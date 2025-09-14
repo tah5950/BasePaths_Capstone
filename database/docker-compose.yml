@@ -1,0 +1,21 @@
+services:
+  database:
+    image: postgres:15
+    container_name: basepaths-database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: basepaths
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./initialization:/docker-entrypoint-initdb.d
+    networks:
+      - basepaths-network
+
+volumes:
+  db_data:
+
+networks:
+  basepaths-network:
