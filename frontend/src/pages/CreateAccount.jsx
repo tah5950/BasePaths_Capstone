@@ -1,5 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Alert,
+} from "@mui/material";
 
 function CreateAccount() {
   const [username, setUsername] = useState("");
@@ -27,40 +35,46 @@ function CreateAccount() {
         setMessage(`Error: ${error}`);
       }
     } catch (err) {
-      setMessage("Network error: " + err.message);
+      setMessage("Error: " + err.message);
     }
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "2rem auto" }}>
-      <h2>Create Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-
-        <div style={{ marginTop: "1rem" }}>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <button type="submit" style={{ marginTop: "1rem" }}>
-          Register
-        </button>
-      </form>
-      {message && <p style={{ marginTop: "1rem" }}>{message}</p>}
-    </div>
+    <Box display="flex" justifyContent="center" alignItems="center" height= "100vh" width="100vw" flexDirection="column">
+        <Box  display="flex" justifyContent="center" flexDirection="column" alignItems="center" height= "300px" width="400px" p={3} boxShadow={3} borderRadius={2} >
+            <Typography component="h1" variant="h4" gutterBottom>
+                Create Account
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+                <TextField
+                    margin="normal"
+                    fullWidth
+                    label="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required/>
+                <TextField
+                    margin="normal"
+                    fullWidth
+                    label="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required/>
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}>
+                    Create
+                </Button>
+            </Box>
+            {message && (
+                <Alert severity={message.startsWith("Error") ? "error" : "success"}>
+                    {message}
+                </Alert>
+            )}
+        </Box>
+    </Box>
   );
 }
 
