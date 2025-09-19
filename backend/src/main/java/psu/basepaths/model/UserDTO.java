@@ -1,3 +1,3 @@
 package psu.basepaths.model;
 
-public record UserDTO(Long id, String username, String passwordHash) {}
+public record UserDTO(Long id, String username, String password) {}

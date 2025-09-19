@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     private User convertToEntity(UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.username());
-        user.setPasswordHash(passwordEncoder.encode(userDTO.passwordHash()));
+        user.setPasswordHash(passwordEncoder.encode(userDTO.password()));
         return user;
     }
 }
