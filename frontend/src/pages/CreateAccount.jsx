@@ -66,6 +66,7 @@ function CreateAccount() {
                     type="submit"
                     fullWidth
                     variant="contained"
+                    label="Create"
                     sx={{ mt: 3, mb: 2 }}>
                     Create
                 </Button>

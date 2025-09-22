@@ -54,6 +54,7 @@ public class UserServiceTest {
         returnValidUser.setPasswordHash(VALID_PASSWORD_HASHED);
     }
 
+    // BUT1 - Register Valid User
     @Test
     public void registerUser_validInput() {
         UserDTO user = new UserDTO(null, VALID_USERNAME, VALID_PASSWORD);
@@ -68,6 +69,8 @@ public class UserServiceTest {
         assertEquals(registeredUser.password(), VALID_PASSWORD_HASHED);
     }
 
+
+    // BUT2 – Register User fails with empty username
     @Test
     public void registerUser_emptyUsername() {
         UserDTO user = new UserDTO(null, EMPTY_STRING, VALID_PASSWORD);
@@ -79,6 +82,7 @@ public class UserServiceTest {
         assertTrue(thrown.getMessage().contains(USERNAME_ERROR_STRING));
     }
 
+    // BUT3 – Register User fails with empty password
     @Test
     public void registerUser_emptyPassword() {
         UserDTO user = new UserDTO(null, VALID_USERNAME, EMPTY_STRING);
@@ -90,6 +94,8 @@ public class UserServiceTest {
         assertTrue(thrown.getMessage().contains(PASSWORD_ERROR_STRING));
     }
 
+
+    // BUT4 – Register Invalid Username
     @Test
     public void registerUser_invalidUsername() {
         UserDTO user = new UserDTO(null, INVALID_USERNAME, VALID_PASSWORD);
@@ -101,6 +107,7 @@ public class UserServiceTest {
         assertTrue(thrown.getMessage().contains(USERNAME_ERROR_STRING));
     }
 
+    // BUT5 – Register Invalid Password
     @Test
     public void registerUser_invalidPassword() {
         UserDTO user = new UserDTO(null, VALID_USERNAME, INVALID_PASSWORD);
@@ -112,6 +119,7 @@ public class UserServiceTest {
         assertTrue(thrown.getMessage().contains(PASSWORD_ERROR_STRING));
     }
 
+    // BUT6 – Register Duplicate Username
     @Test
     public void registerUser_duplicateUsername() {
         UserDTO user = new UserDTO(null, VALID_USERNAME, VALID_PASSWORD);
