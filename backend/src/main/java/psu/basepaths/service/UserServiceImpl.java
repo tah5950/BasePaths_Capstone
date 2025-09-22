@@ -29,14 +29,16 @@ public class UserServiceImpl implements UserService {
     public UserDTO registerUser(UserDTO userDTO) throws IllegalArgumentException{
         validateUsername(userDTO.username());
         validatePassword(userDTO.password());
-        User user = convertToEntity(userDTO);
-        User registeredUser = new User();
-        try{
-            registeredUser = userRepository.save(user);
-        }
-        catch(DataIntegrityViolationException e){
+
+        if(userRepository.existsUserByUsername(userDTO.username())){
             throw new IllegalArgumentException("Username Already Exists");
         }
+
+        User user = convertToEntity(userDTO);
+        User registeredUser = new User();
+
+        registeredUser = userRepository.save(user);
+
         return convertToDTO(registeredUser);
     }
 
