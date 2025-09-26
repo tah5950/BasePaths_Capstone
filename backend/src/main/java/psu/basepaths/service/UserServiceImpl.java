@@ -4,7 +4,12 @@ import psu.basepaths.model.User;
 import psu.basepaths.model.UserDTO;
 import psu.basepaths.repository.UserRepository;
 
+import java.util.Optional;
+
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +19,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final String usernameRegex = "^[0-9A-Za-z]{6,16}$";
     private final String passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,32}$";
+
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -32,6 +38,13 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Username Already Exists");
         }
         return convertToDTO(registeredUser);
+    }
+
+    @Override
+    public Optional<UserDTO> authenticate(UserDTO userDTO) {
+        return userRepository.findByUsername(userDTO.username())
+                .filter(user -> passwordEncoder.matches(userDTO.password(), user.getPasswordHash()))
+                .map(this :: convertToDTO);
     }
 
     // Convert User Entity to UserDTO
