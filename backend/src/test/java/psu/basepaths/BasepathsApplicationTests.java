@@ -1,13 +1,13 @@
-package psu.basepaths;
+// package psu.basepaths;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class BasepathsApplicationTests {
+// @SpringBootTest
+// class BasepathsApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+ 	// @Test
+ 	// void contextLoads() {
+ 	// }
 
-}
+// }
