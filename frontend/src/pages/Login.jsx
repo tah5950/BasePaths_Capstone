@@ -8,8 +8,9 @@ import {
   Button,
   Alert,
 } from "@mui/material";
+import { saveToken } from "../utils/authUtils";
 
-function CreateAccount() {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -19,7 +20,7 @@ function CreateAccount() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/user/register", {
+      const response = await fetch("http://localhost:8080/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +34,8 @@ function CreateAccount() {
         saveToken(token);
         navigate("/home");
       } else {
-        const error = await response.text();
+        const errorData = await response.json()
+        const error = errorData.error;
         setMessage(`Error: ${error}`);
       }
     } catch (err) {
@@ -43,9 +45,9 @@ function CreateAccount() {
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" height= "100vh" width="100vw" flexDirection="column">
-        <Box  display="flex" justifyContent="center" flexDirection="column" alignItems="center" height= "300px" width="400px" p={3} boxShadow={3} borderRadius={2} >
+        <Box  display="flex" justifyContent="center" flexDirection="column" alignItems="center" height= "400px" width="400px" p={3} boxShadow={3} borderRadius={2} >
             <Typography component="h1" variant="h4" gutterBottom>
-                Create Account
+                Login
             </Typography>
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
                 <TextField
@@ -67,7 +69,14 @@ function CreateAccount() {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}>
-                    Create
+                    Login
+                </Button>
+                <Button 
+                    fullWidth
+                    variant="outlined"
+                    sx = {{ mt:1 }}
+                    onClick={() => navigate("/createaccount")}>
+                    Sign Up
                 </Button>
             </Box>
             {message && (
@@ -80,4 +89,4 @@ function CreateAccount() {
   );
 }
 
-export default CreateAccount;
+export default Login;
