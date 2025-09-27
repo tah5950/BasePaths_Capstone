@@ -1,6 +1,6 @@
-import { AppBar, Button, Toolbar, Typography, Stack } from "@mui/material"
-import MyLogo from "../assets/Logo.png"
-import { clearToken } from "../utils/authUtils"
+import { AppBar, Button, Toolbar, Typography, Stack } from "@mui/material";
+import MyLogo from "../assets/Logo.png";
+import { clearToken } from "../utils/authUtils";
 import { useNavigate } from "react-router-dom";
 
 export const MuiNavbar = () => {

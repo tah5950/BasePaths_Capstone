@@ -52,6 +52,7 @@ function CreateAccount() {
                     margin="normal"
                     fullWidth
                     label="Username"
+                    name="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required/>
@@ -59,6 +60,7 @@ function CreateAccount() {
                     margin="normal"
                     fullWidth
                     label="Password"
+                    name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required/>
@@ -66,6 +68,7 @@ function CreateAccount() {
                     type="submit"
                     fullWidth
                     variant="contained"
+                    label="Create"
                     sx={{ mt: 3, mb: 2 }}>
                     Create
                 </Button>
