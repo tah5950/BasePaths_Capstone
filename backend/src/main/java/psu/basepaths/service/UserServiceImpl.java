@@ -39,6 +39,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDTO> authenticate(UserDTO userDTO) {
+        if(userDTO == null 
+            || userDTO.username() == null || userDTO.username().isEmpty()
+            || userDTO.password() == null || userDTO.password().isEmpty()) {
+            return Optional.empty();
+        }
+
         return userRepository.findByUsername(userDTO.username())
                 .filter(user -> passwordEncoder.matches(userDTO.password(), user.getPasswordHash()))
                 .map(this :: convertToDTO);
