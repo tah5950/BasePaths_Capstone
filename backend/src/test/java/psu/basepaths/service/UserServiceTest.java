@@ -10,12 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.lang.classfile.ClassFile.Option;
 import java.util.Optional;
 
 import psu.basepaths.model.User;
@@ -32,6 +34,9 @@ public class UserServiceTest {
 
     private static final String INVALID_USERNAME = "invalid_User";
     private static final String INVALID_PASSWORD = "invalidPass";
+
+    private static final String INVALID_USERNAME_DNE = "invalidUser";
+    private static final String INVALID_PASSWORD_DNE = "invalidPass1!";
 
     private static final String EMPTY_STRING = "";
 
@@ -136,5 +141,63 @@ public class UserServiceTest {
         });
 
         assertTrue(thrown.getMessage().contains(DUPLICATE_USERNAME_ERROR_STRING));
+    }
+
+    // BUT7 - Authenticate with valid credentials
+    @Test
+    public void userAuth_validInput() {
+        UserDTO userDTO = new UserDTO(null, VALID_USERNAME, VALID_PASSWORD);
+
+        when(userRepository.findByUsername(VALID_USERNAME)).thenReturn(Optional.of(returnValidUser));
+
+        Optional<UserDTO> result = userService.authenticate(userDTO);
+
+        assertTrue(result.isPresent());
+        assertEquals(result.get().username(), VALID_USERNAME);
+        assertEquals(result.get().password(), VALID_PASSWORD_HASHED);
+    }
+
+    // BUT8 - Authenticate with incorrect username
+    @Test
+    public void userAuth_invalidUsername() {
+        UserDTO userDTO = new UserDTO(null, INVALID_USERNAME_DNE, VALID_PASSWORD);
+
+        when(userRepository.findByUsername(INVALID_USERNAME_DNE)).thenReturn(Optional.empty());
+
+        Optional<UserDTO> result = userService.authenticate(userDTO);
+
+        assertFalse(result.isPresent());
+    }
+
+    // BUT9 - Authenticate with incorrect password
+    @Test
+    public void userAuth_invalidPassword() {
+        UserDTO userDTO = new UserDTO(null, VALID_USERNAME, INVALID_PASSWORD_DNE);
+
+        when(userRepository.findByUsername(VALID_USERNAME)).thenReturn(Optional.of(returnValidUser));
+
+        Optional<UserDTO> result = userService.authenticate(userDTO);
+
+        assertFalse(result.isPresent());
+    }
+
+    // BUT10 - Authenticate with empty username
+    @Test
+    public void userAuth_emptyUsername() {
+        UserDTO userDTO = new UserDTO(null, EMPTY_STRING, VALID_PASSWORD);
+
+        Optional<UserDTO> result = userService.authenticate(userDTO);
+
+        assertFalse(result.isPresent());
+    }
+
+    // BUT11 - Authenticate with empty password
+    @Test
+    public void userAuth_emptyPassword() {
+        UserDTO userDTO = new UserDTO(null, VALID_USERNAME, EMPTY_STRING);
+
+        Optional<UserDTO> result = userService.authenticate(userDTO);
+
+        assertFalse(result.isPresent());
     }
 }
