@@ -7,9 +7,6 @@ import psu.basepaths.repository.UserRepository;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,16 +26,14 @@ public class UserServiceImpl implements UserService {
     public UserDTO registerUser(UserDTO userDTO) throws IllegalArgumentException{
         validateUsername(userDTO.username());
         validatePassword(userDTO.password());
-
-        if(userRepository.existsUserByUsername(userDTO.username())){
-            throw new IllegalArgumentException("Username Already Exists");
-        }
-
         User user = convertToEntity(userDTO);
         User registeredUser = new User();
-
-        registeredUser = userRepository.save(user);
-
+        try{
+            registeredUser = userRepository.save(user);
+        }
+        catch(DataIntegrityViolationException e){
+            throw new IllegalArgumentException("Username Already Exists");
+        }
         return convertToDTO(registeredUser);
     }
 

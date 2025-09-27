@@ -26,15 +26,18 @@ describe("CreateAccount Frontend Unit Tests", () => {
     test("FUT1 - Register Valid User", async () => {
         global.fetch.mockResolvedValueOnce({
             ok: true,
-            text: async () => "",
+            json: async () => ({ token: "test-token "}),
         })
+
+        localStorage.setItem("token", "test-token");
+
         render(
-        <MemoryRouter initialEntries={["/createaccount"]}>
-            <Routes>
-                <Route path="/createaccount" element={<CreateAccount/>}/>
-                <Route path="/home" element={<Home />}/>
-            </Routes>
-        </MemoryRouter>
+            <MemoryRouter initialEntries={["/createaccount"]}>
+                <Routes>
+                    <Route path="/createaccount" element={<CreateAccount/>}/>
+                    <Route path="/home" element={<Home />}/>
+                </Routes>
+            </MemoryRouter>
         );
 
         fireEvent.change(screen.getByLabelText(/Username/i), {
@@ -59,9 +62,9 @@ describe("CreateAccount Frontend Unit Tests", () => {
         });
 
         render(
-        <MemoryRouter>
-            <CreateAccount />
-        </MemoryRouter>
+            <MemoryRouter>
+                <CreateAccount />
+            </MemoryRouter>
         );
 
         fireEvent.change(screen.getByLabelText(/Username/i), {
@@ -86,9 +89,9 @@ describe("CreateAccount Frontend Unit Tests", () => {
         });
 
         render(
-        <MemoryRouter>
-            <CreateAccount />
-        </MemoryRouter>
+            <MemoryRouter>
+                <CreateAccount />
+            </MemoryRouter>
         );
 
         fireEvent.change(screen.getByLabelText(/Username/i), {
@@ -108,9 +111,9 @@ describe("CreateAccount Frontend Unit Tests", () => {
 
     test("FUT4 - Create Account Form Renders", () => {
         render(
-        <MemoryRouter>
-            <CreateAccount />
-        </MemoryRouter>
+            <MemoryRouter>
+                <CreateAccount />
+            </MemoryRouter>
         );
 
         expect(screen.getByLabelText(/Username/i)).toBeInTheDocument();

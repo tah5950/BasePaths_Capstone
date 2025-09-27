@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import psu.basepaths.model.User;
 import psu.basepaths.model.UserDTO;
@@ -46,6 +49,9 @@ public class UserServiceTest {
     @InjectMocks
     private UserServiceImpl userService;
 
+    @Mock
+    Optional<User> optionalMock;
+
     @BeforeAll
     public static void setUp() {
         returnValidUser = new User();
@@ -59,7 +65,6 @@ public class UserServiceTest {
     public void registerUser_validInput() {
         UserDTO user = new UserDTO(null, VALID_USERNAME, VALID_PASSWORD);
 
-        when(userRepository.existsUserByUsername(VALID_USERNAME)).thenReturn(false);
         when(userRepository.save(any(User.class))).thenReturn(returnValidUser);
 
         UserDTO registeredUser = userService.registerUser(user);
@@ -124,7 +129,7 @@ public class UserServiceTest {
     public void registerUser_duplicateUsername() {
         UserDTO user = new UserDTO(null, VALID_USERNAME, VALID_PASSWORD);
 
-        when(userRepository.existsUserByUsername(VALID_USERNAME)).thenReturn(true);
+        when(userRepository.save(any(User.class))).thenThrow(DataIntegrityViolationException.class);
 
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
             userService.registerUser(user);
