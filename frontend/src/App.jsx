@@ -2,16 +2,16 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import { isLoggedIn } from "./utils/authUtils";
+import RequireAuth  from "./utils/RequireAuth";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isLoggedIn() ? <Navigate to="/home" /> : <Navigate to="/login" />} />
+        <Route path="/" element={<RequireAuth><Home/></RequireAuth>} />
         <Route path="/login" element={<Login />} />
         <Route path="/createaccount" element={<CreateAccount />} />
-        <Route path="/home" element={isLoggedIn() ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/home" element={<RequireAuth><Home/></RequireAuth>} />
       </Routes>
     </Router>
   );

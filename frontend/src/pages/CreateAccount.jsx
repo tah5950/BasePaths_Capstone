@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Container,
   Box,
   Typography,
   TextField,
   Button,
   Alert,
 } from "@mui/material";
+import { saveToken } from "../utils/authUtils";
 
 function CreateAccount() {
   const [username, setUsername] = useState("");
