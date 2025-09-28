@@ -74,6 +74,11 @@ describe("Login Frontend Unit Tests", () => {
     });
 
     test("FUT8 - Login Invalid Credentials", async () => {
+        global.fetch.mockResolvedValueOnce({
+            ok: false,
+            json: async () => ({ error: "Invalid Username or Password" }),
+        });
+
         render(
             <MemoryRouter>
                 <Login />
@@ -91,12 +96,16 @@ describe("Login Frontend Unit Tests", () => {
         fireEvent.click(screen.getByRole("button", {name: /Login/i}));
 
         await waitFor(() => {
-            expect(screen.getByText(/Error: Invalid Username or Password/i)).toBeInTheDocument();
+            expect(
+            screen.getByText((content) =>
+                content.includes("Error: Invalid Username or Password")
+            )
+            ).toBeInTheDocument();
         });
     });
 
     test("FUT9 - Login API error", async () => {
-        global.fetch.mockResolvedValueOnce(new Error("Failed to fetch"))
+        global.fetch.mockRejectedValueOnce(new Error("Failed to fetch"));
 
         render(
             <MemoryRouter>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1759071727198" clover="3.2.0">
+  <project timestamp="1759071727198" name="All files">
+    <metrics statements="71" coveredstatements="64" conditionals="14" coveredconditionals="10" methods="21" coveredmethods="20" elements="106" coveredelements="94" complexity="0" loc="71" ncloc="71" packages="4" files="8" classes="8"/>
+    <package name="src">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="App.jsx" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/App.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="12" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+      </file>
+      <file name="main.jsx" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/main.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="MuiNavbar.jsx" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/components/MuiNavbar.jsx">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="30" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages">
+      <metrics statements="49" coveredstatements="42" conditionals="12" coveredconditionals="9" methods="12" coveredmethods="11"/>
+      <file name="CreateAccount.jsx" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/pages/CreateAccount.jsx">
+        <metrics statements="22" coveredstatements="17" conditionals="6" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <line num="12" count="146" type="stmt"/>
+        <line num="13" count="146" type="stmt"/>
+        <line num="14" count="146" type="stmt"/>
+        <line num="15" count="146" type="stmt"/>
+        <line num="16" count="146" type="stmt"/>
+        <line num="18" count="146" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="30" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="146" type="stmt"/>
+        <line num="57" count="32" type="stmt"/>
+        <line num="65" count="35" type="stmt"/>
+        <line num="84" count="6" type="stmt"/>
+        <line num="86" count="6" type="stmt"/>
+      </file>
+      <file name="Home.jsx" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/pages/Home.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+      </file>
+      <file name="Login.jsx" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/pages/Login.jsx">
+        <metrics statements="24" coveredstatements="22" conditionals="6" coveredconditionals="5" methods="6" coveredmethods="5"/>
+        <line num="13" count="98" type="stmt"/>
+        <line num="14" count="98" type="stmt"/>
+        <line num="15" count="98" type="stmt"/>
+        <line num="16" count="98" type="stmt"/>
+        <line num="17" count="98" type="stmt"/>
+        <line num="19" count="98" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="98" type="stmt"/>
+        <line num="59" count="21" type="stmt"/>
+        <line num="67" count="24" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="92" count="6" type="stmt"/>
+        <line num="94" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="5"/>
+      <file name="RequireAuth.jsx" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/utils/RequireAuth.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="6" count="6" type="stmt"/>
+      </file>
+      <file name="authUtils.js" path="D:/Documents/School/Penn State/Fall 2025/Capstone Project/Source code/BasePaths_Capstone/frontend/src/utils/authUtils.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

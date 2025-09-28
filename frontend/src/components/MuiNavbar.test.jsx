@@ -1,9 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor} from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Login from "./Login";
-import Home from "./Home";
-import CreateAccount from "./CreateAccount";
+import Login from "../pages/Login";
+import Home from "../pages/Home";
 
 // Mock navigate to test routing behavior
 const mockNavigate = jest.fn();
