@@ -54,6 +54,7 @@ function Login() {
                     margin="normal"
                     fullWidth
                     label="Username"
+                    name="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required/>
@@ -61,6 +62,7 @@ function Login() {
                     margin="normal"
                     fullWidth
                     label="Password"
+                    name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required/>
