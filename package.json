@@ -4,6 +4,8 @@
     "cypress:run": "cypress run"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.14.6",
+    "babel-plugin-istanbul": "^7.0.1",
     "cypress": "^15.2.0"
   }
 }

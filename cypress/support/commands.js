@@ -1,3 +1,5 @@
+import '@cypress/code-coverage/support';
+
 Cypress.Commands.add("login", () => {
   cy.request("POST", "http://localhost:8080/api/user/login", {
     username: "cyTestUser",
