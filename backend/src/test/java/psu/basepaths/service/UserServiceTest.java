@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import java.lang.classfile.ClassFile.Option;
 import java.util.Optional;
 
 import psu.basepaths.model.User;
