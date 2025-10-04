@@ -86,17 +86,17 @@ jobs:
           nohup npm run preview -- --host --port 5173 > frontend.log 2>&1 &
         shell: bash
 
-      - name: Wait
+      - name: Wait for services
         run: sleep 15
       
-      - name: Wait for services
-        run: |
-          echo "Checking backend:"
-          curl -v http://localhost:8080 || true
+      # - name: Wait for services
+      #   run: |
+      #     echo "Checking backend:"
+      #     curl -v http://localhost:8080 || true
 
-          echo "Checking frontend:"
-          curl -v http://localhost:5173 || true
-          npx wait-on --timeout 120000 http://localhost:5173 http://localhost:8080
+      #     echo "Checking frontend:"
+      #     curl -v http://localhost:5173 || true
+      #     npx wait-on --timeout 120000 http://localhost:5173 http://localhost:8080
 
       - name: Run Cypress
         run: npx cypress run
