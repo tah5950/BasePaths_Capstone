@@ -87,8 +87,8 @@ jobs:
       
       - name: Wait for services
         run: |
-          npx wait-on http://localhost:8080
-          npx wait-on http://localhost:5173
+          npx wait-on --timeout 60000 http://localhost:8080
+          npx wait-on --timeout 60000 http://localhost:5173
 
       - name: Run Cypress
         run: npx cypress run
