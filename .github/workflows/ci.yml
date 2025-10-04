@@ -83,7 +83,7 @@ jobs:
       - name: Start Frontend
         run: |
           cd frontend
-          nohup npm run preview -- --host > frontend.log 2>&1 &
+          nohup npm run preview -- --host --port 5173 > frontend.log 2>&1 &
         shell: bash
       
       - name: Wait for services
