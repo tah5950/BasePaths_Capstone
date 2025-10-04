@@ -84,7 +84,7 @@ jobs:
       - name: Run Cypress
         run: npx cypress run
 
-      - uses: actions/uploead-artifact@v4
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-artifacts
