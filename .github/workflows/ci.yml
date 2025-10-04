@@ -90,6 +90,12 @@ jobs:
         run: |
           npx wait-on --timeout 120000 http://localhost:5173 http://localhost:8080
 
+
+      - name: Debug ports
+        run: |
+          curl -v http://localhost:8080 || true
+          curl -v http://localhost:5173 || true
+
       - name: Run Cypress
         run: npx cypress run
 
