@@ -82,14 +82,16 @@ jobs:
       - name: Start Frontend
         run: |
           cd frontend
-          npm run dev &
+          npm run preview &
         shell: bash
       
       - name: Wait for services
         run: sleep 120
 
       - name: Run Cypress
-        run: npx cypress run
+        run: |
+          cd frontend  
+          npx cypress run
 
       - uses: actions/upload-artifact@v4
         if: failure()
