@@ -85,6 +85,9 @@ jobs:
           cd frontend
           nohup npm run preview -- --host --port 5173 > frontend.log 2>&1 &
         shell: bash
+
+      - name: Wait
+        run: sleep 15000
       
       - name: Wait for services
         run: |
