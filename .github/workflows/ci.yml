@@ -87,7 +87,7 @@ jobs:
         shell: bash
 
       - name: Wait
-        run: sleep 15000
+        run: sleep 15
       
       - name: Wait for services
         run: |
