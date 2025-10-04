@@ -23,6 +23,11 @@ public class UserController {
         this.jwtService = jwtService;
     }
 
+    @PostMapping("/ping")
+    public ResponseEntity<?> ping() {
+        return ResponseEntity.ok("pong");
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO) {
         try{

@@ -89,17 +89,18 @@ jobs:
       - name: Wait for services
         run: sleep 15
       
-      # - name: Wait for services
-      #   run: |
-      #     echo "Checking backend:"
-      #     curl -v http://localhost:8080 || true
+      - name: Wait for services
+        run: |
+          echo "Checking backend:"
+          curl -v http://localhost:8080 || true
 
-      #     echo "Checking frontend:"
-      #     curl -v http://localhost:5173 || true
-      #     npx wait-on --timeout 120000 http://localhost:5173 http://localhost:8080
+          echo "Checking frontend:"
+          curl -v http://localhost:5173 || true
+          npx wait-on --timeout 60000 http://localhost:5173 http://localhost:8080/api/user/ping
 
-      - name: Run Cypress
-        uses: cypress-io/github-action@v6
+      # Cypress tests will need seed data, which can be setup as part of future task
+      # - name: Run Cypress
+      #   uses: cypress-io/github-action@v6
 
       - uses: actions/upload-artifact@v4
         if: failure()
