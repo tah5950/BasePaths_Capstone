@@ -74,6 +74,9 @@ jobs:
           cd frontend
           npm test -- --coverage
 
+      - name: Install Frontend for Cypress
+        run: npm ci
+
       - name: Start Backend
         run: |
           cd backend
