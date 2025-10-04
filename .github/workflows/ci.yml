@@ -92,9 +92,7 @@ jobs:
         run: sleep 120
 
       - name: Run Cypress
-        run: |
-          cd frontend  
-          npx cypress run
+        run: npx cypress run
 
       - uses: actions/upload-artifact@v4
         if: failure()
