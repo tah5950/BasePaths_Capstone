@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { saveToken } from "../utils/authUtils";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function CreateAccount() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +21,7 @@ function CreateAccount() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/user/register", {
+      const response = await fetch(`${API_BASE_URL}/api/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
