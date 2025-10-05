@@ -8,8 +8,7 @@ import {
   Alert,
 } from "@mui/material";
 import { saveToken } from "../utils/authUtils";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { API_BASE_URL } from '../config';
 
 function CreateAccount() {
   const [username, setUsername] = useState("");
