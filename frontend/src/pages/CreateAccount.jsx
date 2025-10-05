@@ -8,6 +8,7 @@ import {
   Alert,
 } from "@mui/material";
 import { saveToken } from "../utils/authUtils";
+import { API_BASE_URL } from '../config';
 
 function CreateAccount() {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ function CreateAccount() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/user/register", {
+      const response = await fetch(`${API_BASE_URL}/api/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -9,6 +9,7 @@ import {
   Alert,
 } from "@mui/material";
 import { saveToken } from "../utils/authUtils";
+import { API_BASE_URL } from '../config';
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -20,7 +21,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/user/login", {
+      const response = await fetch(`${API_BASE_URL}/api/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
