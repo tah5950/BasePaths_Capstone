@@ -1,0 +1,302 @@
+[
+  {
+    "ballparkId": 2680,
+    "name": "PETCO Park",
+    "teamName": "San Diego Padres",
+    "city": "San Diego",
+    "state": "CA",
+    "country": "USA",
+    "lat": "32.70752890000001",
+    "lon": "-117.1568083"
+  },
+  {
+    "ballparkId": 3289,
+    "name": "Citi Field",
+    "teamName": "New York Mets",
+    "city": "Flushing, Queens",
+    "state": "NY",
+    "country": "USA",
+    "lat": "40.7564124",
+    "lon": "-73.84589369999999"
+  },
+  {
+    "ballparkId": 5,
+    "name": "Progressive Field",
+    "teamName": "Cleveland Guardians",
+    "city": "Cleveland",
+    "state": "OH",
+    "country": "USA",
+    "lat": "41.4957048",
+    "lon": "-81.6852732"
+  },
+  {
+    "ballparkId": 2395,
+    "name": "Oracle Park",
+    "teamName": "San Francisco Giants",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "lat": "37.7784199",
+    "lon": "-122.3906212"
+  },
+  {
+    "ballparkId": 3312,
+    "name": "Target Field",
+    "teamName": "Minnesota Twins",
+    "city": "Minneapolis",
+    "state": "MN",
+    "country": "USA",
+    "lat": "44.981829",
+    "lon": "-93.277891"
+  },
+  {
+    "ballparkId": 4705,
+    "name": "Truist Park",
+    "teamName": "Atlanta Braves",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "USA",
+    "lat": "33.890672",
+    "lon": "-84.467641"
+  },
+  {
+    "ballparkId": 32,
+    "name": "American Family Field",
+    "teamName": "Milwaukee Brewers",
+    "city": "Milwaukee",
+    "state": "WI",
+    "country": "USA",
+    "lat": "43.02873899999999",
+    "lon": "-87.9713034"
+  },
+  {
+    "ballparkId": 2,
+    "name": "Oriole Park at Camden Yards",
+    "teamName": "Baltimore Orioles",
+    "city": "Baltimore",
+    "state": "MD",
+    "country": "USA",
+    "lat": "39.283787",
+    "lon": "-76.621689"
+  },
+  {
+    "ballparkId": 4,
+    "name": "Rate Field",
+    "teamName": "Chicago White Sox",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "USA",
+    "lat": "41.8300662",
+    "lon": "-87.63483300000001"
+  },
+  {
+    "ballparkId": 17,
+    "name": "Wrigley Field",
+    "teamName": "Chicago Cubs",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "USA",
+    "lat": "41.9474473",
+    "lon": "-87.6560538"
+  },
+  {
+    "ballparkId": 1,
+    "name": "Angel Stadium",
+    "teamName": "Los Angeles Angels",
+    "city": "Anaheim",
+    "state": "CA",
+    "country": "USA",
+    "lat": "33.7996617",
+    "lon": "-117.8834384"
+  },
+  {
+    "ballparkId": 31,
+    "name": "PNC Park",
+    "teamName": "Pittsburgh Pirates",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "country": "USA",
+    "lat": "40.4471507",
+    "lon": "-80.0064087"
+  },
+  {
+    "ballparkId": 22,
+    "name": "Dodger Stadium",
+    "teamName": "Los Angeles Dodgers",
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "USA",
+    "lat": "34.0745409",
+    "lon": "-118.2408881"
+  },
+  {
+    "ballparkId": 7,
+    "name": "Kauffman Stadium",
+    "teamName": "Kansas City Royals",
+    "city": "Kansas City",
+    "state": "MO",
+    "country": "USA",
+    "lat": "39.051465",
+    "lon": "-94.48028889999999"
+  },
+  {
+    "ballparkId": 3313,
+    "name": "Yankee Stadium",
+    "teamName": "New York Yankees",
+    "city": "Bronx",
+    "state": "NY",
+    "country": "USA",
+    "lat": "40.8288189",
+    "lon": "-73.9265691"
+  },
+  {
+    "ballparkId": 2889,
+    "name": "Busch Stadium",
+    "teamName": "St. Louis Cardinals",
+    "city": "St. Louis",
+    "state": "MO",
+    "country": "USA",
+    "lat": "38.6226441",
+    "lon": "-90.1928125"
+  },
+  {
+    "ballparkId": 14,
+    "name": "Rogers Centre",
+    "teamName": "Toronto Blue Jays",
+    "city": "Toronto",
+    "state": "ON",
+    "country": "CAN",
+    "lat": "43.6417388",
+    "lon": "-79.3892547"
+  },
+  {
+    "ballparkId": 19,
+    "name": "Coors Field",
+    "teamName": "Colorado Rockies",
+    "city": "Denver",
+    "state": "CO",
+    "country": "USA",
+    "lat": "39.7559779",
+    "lon": "-104.9933491"
+  },
+  {
+    "ballparkId": 2529,
+    "name": "Sutter Health Park",
+    "teamName": "Athletics",
+    "city": "West Sacramento",
+    "state": "CA",
+    "country": "USA",
+    "lat": "38.579609",
+    "lon": "-121.515038"
+  },
+  {
+    "ballparkId": 3,
+    "name": "Fenway Park",
+    "teamName": "Boston Red Sox",
+    "city": "Boston",
+    "state": "MA",
+    "country": "USA",
+    "lat": "42.34584359999999",
+    "lon": "-71.09878189999999"
+  },
+  {
+    "ballparkId": 2681,
+    "name": "Citizens Bank Park",
+    "teamName": "Philadelphia Phillies",
+    "city": "Philadelphia",
+    "state": "PA",
+    "country": "USA",
+    "lat": "39.9059929",
+    "lon": "-75.1666401"
+  },
+  {
+    "ballparkId": 5325,
+    "name": "Globe Life Field",
+    "teamName": "Texas Rangers",
+    "city": "Arlington",
+    "state": "TX",
+    "country": "USA",
+    "lat": "32.747300",
+    "lon": "-97.081820"
+  },
+  {
+    "ballparkId": 3309,
+    "name": "Nationals Park",
+    "teamName": "Washington Nationals",
+    "city": "Washington",
+    "state": "DC",
+    "country": "USA",
+    "lat": "38.8730933",
+    "lon": "-77.0075727"
+  },
+  {
+    "ballparkId": 15,
+    "name": "Chase Field",
+    "teamName": "Arizona Diamondbacks",
+    "city": "Phoenix",
+    "state": "AZ",
+    "country": "USA",
+    "lat": "33.445302",
+    "lon": "-112.066687"
+  },
+  {
+    "ballparkId": 4169,
+    "name": "loanDepot park",
+    "teamName": "Miami Marlins",
+    "city": "Miami",
+    "state": "FL",
+    "country": "USA",
+    "lat": "25.7780567",
+    "lon": "-80.2194087"
+  },
+  {
+    "ballparkId": 2394,
+    "name": "Comerica Park",
+    "teamName": "Detroit Tigers",
+    "city": "Detroit",
+    "state": "MI",
+    "country": "USA",
+    "lat": "42.3391886",
+    "lon": "-83.04947829999999"
+  },
+  {
+    "ballparkId": 2392,
+    "name": "Daikin Park",
+    "teamName": "Houston Astros",
+    "city": "Houston",
+    "state": "TX",
+    "country": "USA",
+    "lat": "29.7577058",
+    "lon": "-95.35453989999999"
+  },
+  {
+    "ballparkId": 2602,
+    "name": "Great American Ball Park",
+    "teamName": "Cincinnati Reds",
+    "city": "Cincinnati",
+    "state": "OH",
+    "country": "USA",
+    "lat": "39.097736",
+    "lon": "-84.5084966"
+  },
+  {
+    "ballparkId": 680,
+    "name": "T-Mobile Park",
+    "teamName": "Seattle Mariners",
+    "city": "Seattle",
+    "state": "WA",
+    "country": "USA",
+    "lat": "47.5899037",
+    "lon": "-122.3337561"
+  },
+  {
+    "ballparkId": 2523,
+    "name": "George M. Steinbrenner Field",
+    "teamName": "Tampa Bay Rays",
+    "city": "Tampa",
+    "state": "FL",
+    "country": "USA",
+    "lat": "27.979330",
+    "lon": "-82.508041"
+  }
+]

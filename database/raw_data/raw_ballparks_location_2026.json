@@ -1,0 +1,892 @@
+{
+  "venues": [
+    {
+      "name": "PETCO Park",
+      "market": "San Diego",
+      "capacity": 40222,
+      "surface": "grass",
+      "address": "100 Park Boulevard",
+      "city": "San Diego",
+      "state": "CA",
+      "zip": "92101",
+      "country": "USA",
+      "id": "0ab45d79-5475-4308-9f94-74b0c185ee6f",
+      "field_orientation": "N",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Pacific",
+      "distances": {
+        "lf": 336,
+        "lcf": 367,
+        "cf": 396,
+        "rcf": 391,
+        "rf": 322,
+        "mlf": 351,
+        "mlcf": 386,
+        "mrcf": 403,
+        "mrf": 351
+      },
+      "location": {
+        "lat": "32.70752890000001",
+        "lng": "-117.1568083"
+      }
+    },
+    {
+      "name": "Citi Field",
+      "market": "New York",
+      "capacity": 42136,
+      "surface": "grass",
+      "address": "41 Seaver Way",
+      "city": "Flushing, Queens",
+      "state": "NY",
+      "zip": "11368",
+      "country": "USA",
+      "id": "265c7d6c-427a-4b8a-8def-392c41954bec",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 335,
+        "lcf": 370,
+        "cf": 408,
+        "rcf": 380,
+        "rf": 330,
+        "mlf": 358,
+        "mlcf": 394,
+        "mrcf": 415,
+        "mrf": 370
+      },
+      "location": {
+        "lat": "40.7564124",
+        "lng": "-73.84589369999999"
+      }
+    },
+    {
+      "name": "Progressive Field",
+      "market": "Cleveland",
+      "capacity": 34788,
+      "surface": "grass",
+      "address": "2401 Ontario Street",
+      "city": "Cleveland",
+      "state": "OH",
+      "zip": "44115",
+      "country": "USA",
+      "id": "2b0ccd49-4d87-4996-ac4d-27ffc7ee4c16",
+      "field_orientation": "N",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 325,
+        "lcf": 370,
+        "cf": 405,
+        "rcf": 375,
+        "rf": 325,
+        "mlf": 369,
+        "mlcf": 410,
+        "mrcf": 388,
+        "mrf": 364
+      },
+      "location": {
+        "lat": "41.4957048",
+        "lng": "-81.6852732"
+      }
+    },
+    {
+      "name": "Oracle Park",
+      "market": "San Francisco",
+      "capacity": 41915,
+      "surface": "grass",
+      "address": "24 Willie Mays Plaza",
+      "city": "San Francisco",
+      "state": "CA",
+      "zip": "94107",
+      "country": "USA",
+      "id": "2d7542f5-7b80-49f7-9b24-c53ffdc75af6",
+      "field_orientation": "E",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Pacific",
+      "distances": {
+        "lf": 339,
+        "lcf": 354,
+        "cf": 391,
+        "rcf": 415,
+        "rf": 309,
+        "mlf": 364,
+        "mlcf": 399,
+        "mrcf": 399,
+        "mrf": 365
+      },
+      "location": {
+        "lat": "37.7784199",
+        "lng": "-122.3906212"
+      }
+    },
+    {
+      "name": "Target Field",
+      "market": "Minnesota",
+      "capacity": 38544,
+      "surface": "grass",
+      "address": "1 Twins Way",
+      "city": "Minneapolis",
+      "state": "MN",
+      "zip": "55403",
+      "country": "USA",
+      "id": "302f8dcd-eed6-4b83-8609-81548d51e955",
+      "field_orientation": "E",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 339,
+        "lcf": 377,
+        "cf": 404,
+        "rcf": 367,
+        "rf": 328,
+        "mlf": 355,
+        "mlcf": 390,
+        "mrcf": 392,
+        "mrf": 344
+      },
+      "location": {
+        "lat": "44.981829",
+        "lng": "-93.277891"
+      }
+    },
+    {
+      "name": "Truist Park",
+      "market": "Atlanta",
+      "capacity": 41149,
+      "surface": "grass",
+      "address": "755 Battery Avenue",
+      "city": "Atlanta",
+      "state": "GA",
+      "zip": "30339",
+      "country": "USA",
+      "id": "3ca8b577-5844-42ed-81a5-bd5d5cbe350c",
+      "field_orientation": "S",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 335,
+        "lcf": 375,
+        "cf": 400,
+        "rcf": 375,
+        "rf": 325,
+        "mlf": 375,
+        "mlcf": 385,
+        "mrf": 375
+      },
+      "location": {
+        "lat": "33.890672",
+        "lng": "-84.467641"
+      }
+    },
+    {
+      "name": "American Family Field",
+      "market": "Milwaukee",
+      "capacity": 41700,
+      "surface": "grass",
+      "address": "One Brewers Way",
+      "city": "Milwaukee",
+      "state": "WI",
+      "zip": "53214",
+      "country": "USA",
+      "id": "3d13c8a7-283f-482b-ade1-441e25b6465d",
+      "field_orientation": "SE",
+      "stadium_type": "retractable",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 344,
+        "lcf": 371,
+        "cf": 400,
+        "rcf": 374,
+        "rf": 345,
+        "mlf": 359,
+        "mlcf": 379,
+        "mrcf": 386,
+        "mrf": 354
+      },
+      "location": {
+        "lat": "43.02873899999999",
+        "lng": "-87.9713034"
+      }
+    },
+    {
+      "name": "Oriole Park at Camden Yards",
+      "market": "Baltimore",
+      "capacity": 45971,
+      "surface": "grass",
+      "address": "333 West Camden Street",
+      "city": "Baltimore",
+      "state": "MD",
+      "zip": "21201",
+      "country": "USA",
+      "id": "434aa63c-1049-4a54-a6bc-3790c7772ee1",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 333,
+        "lcf": 398,
+        "cf": 400,
+        "rcf": 373,
+        "rf": 318,
+        "mlf": 374,
+        "mlcf": 384,
+        "mrcf": 400,
+        "mrf": 373
+      },
+      "location": {
+        "lat": "39.283787",
+        "lng": "-76.621689"
+      }
+    },
+    {
+      "name": "Rate Field",
+      "market": "Chicago",
+      "capacity": 40241,
+      "surface": "grass",
+      "address": "333 West 35th Street",
+      "city": "Chicago",
+      "state": "IL",
+      "zip": "60616",
+      "country": "USA",
+      "id": "4a550fc1-c03d-4294-b63a-30ff197bedc4",
+      "field_orientation": "SE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 330,
+        "lcf": 377,
+        "cf": 400,
+        "rcf": 372,
+        "rf": 335,
+        "mlf": 365,
+        "mlcf": 385,
+        "mrcf": 385,
+        "mrf": 365
+      },
+      "location": {
+        "lat": "41.8300662",
+        "lng": "-87.63483300000001"
+      }
+    },
+    {
+      "name": "Wrigley Field",
+      "market": "Chicago",
+      "capacity": 41363,
+      "surface": "grass",
+      "address": "1060 West Addison Street",
+      "city": "Chicago",
+      "state": "IL",
+      "zip": "60613",
+      "country": "USA",
+      "id": "53f8eb0d-a361-4a7a-930b-2f8735ea0698",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 355,
+        "lcf": 368,
+        "cf": 400,
+        "rcf": 368,
+        "rf": 353,
+        "mlf": 356,
+        "mlcf": 391,
+        "mrcf": 397,
+        "mrf": 356
+      },
+      "location": {
+        "lat": "41.9474473",
+        "lng": "-87.6560538"
+      }
+    },
+    {
+      "name": "Angel Stadium",
+      "market": "Los Angeles",
+      "capacity": 45517,
+      "surface": "grass",
+      "address": "2000 Gene Autry Way",
+      "city": "Anaheim",
+      "state": "CA",
+      "zip": "92806",
+      "country": "USA",
+      "id": "60732da9-ad03-4feb-9a36-aee3e98c7a2b",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Pacific",
+      "distances": {
+        "lf": 330,
+        "lcf": 389,
+        "cf": 396,
+        "rcf": 365,
+        "rf": 330,
+        "mlf": 347,
+        "mlcf": 387,
+        "mrcf": 383,
+        "mrf": 348
+      },
+      "location": {
+        "lat": "33.7996617",
+        "lng": "-117.8834384"
+      }
+    },
+    {
+      "name": "PNC Park",
+      "market": "Pittsburgh",
+      "capacity": 38753,
+      "surface": "grass",
+      "address": "115 Federal Street",
+      "city": "Pittsburgh",
+      "state": "PA",
+      "zip": "15212",
+      "country": "USA",
+      "id": "61314394-c8b8-411e-b891-ca41285d5362",
+      "field_orientation": "E",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 325,
+        "lcf": 389,
+        "cf": 399,
+        "rcf": 375,
+        "rf": 320,
+        "mlf": 370,
+        "mlcf": 410,
+        "mrcf": 393,
+        "mrf": 353
+      },
+      "location": {
+        "lat": "40.4471507",
+        "lng": "-80.0064087"
+      }
+    },
+    {
+      "name": "Dodger Stadium",
+      "market": "Los Angeles",
+      "capacity": 56000,
+      "surface": "grass",
+      "address": "1000 Vin Scully Avenue",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zip": "90012",
+      "country": "USA",
+      "id": "66a19c3d-24fe-477d-bee7-c6ef1b98352f",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Pacific",
+      "distances": {
+        "lf": 330,
+        "lcf": 385,
+        "cf": 395,
+        "rcf": 385,
+        "rf": 330,
+        "mlf": 380,
+        "mlcf": 390,
+        "mrcf": 390,
+        "mrf": 380
+      },
+      "location": {
+        "lat": "34.0745409",
+        "lng": "-118.2408881"
+      }
+    },
+    {
+      "name": "Kauffman Stadium",
+      "market": "Kansas City",
+      "capacity": 38427,
+      "surface": "grass",
+      "address": "One Royal Way",
+      "city": "Kansas City",
+      "state": "MO",
+      "zip": "64129",
+      "country": "USA",
+      "id": "6fca95c9-7f2c-4acb-a9f3-02ef96340d2a",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 330,
+        "lcf": 387,
+        "cf": 410,
+        "rcf": 387,
+        "rf": 330,
+        "mlf": 351,
+        "mlcf": 390,
+        "mrcf": 390,
+        "mrf": 351
+      },
+      "location": {
+        "lat": "39.051465",
+        "lng": "-94.48028889999999"
+      }
+    },
+    {
+      "name": "Yankee Stadium",
+      "market": "New York",
+      "capacity": 47309,
+      "surface": "grass",
+      "address": "One East 161st Street",
+      "city": "Bronx",
+      "state": "NY",
+      "zip": "10451",
+      "country": "USA",
+      "id": "706e9828-6687-4ac8-a409-3fb972e8bae9",
+      "field_orientation": "E",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 318,
+        "lcf": 399,
+        "cf": 408,
+        "rcf": 385,
+        "rf": 314,
+        "mlf": 357,
+        "mlcf": 400,
+        "mrcf": 396,
+        "mrf": 346
+      },
+      "location": {
+        "lat": "40.8288189",
+        "lng": "-73.9265691"
+      }
+    },
+    {
+      "name": "Busch Stadium",
+      "market": "St. Louis",
+      "capacity": 44494,
+      "surface": "grass",
+      "address": "700 Clark Street",
+      "city": "St. Louis",
+      "state": "MO",
+      "zip": "63102",
+      "country": "USA",
+      "id": "83cc591a-1096-4383-a6ca-e2bd6f8db629",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 336,
+        "lcf": 375,
+        "cf": 400,
+        "rcf": 375,
+        "rf": 335,
+        "mlf": 354,
+        "mlcf": 392,
+        "mrcf": 392,
+        "mrf": 354
+      },
+      "location": {
+        "lat": "38.6226441",
+        "lng": "-90.1928125"
+      }
+    },
+    {
+      "name": "Rogers Centre",
+      "market": "Toronto",
+      "capacity": 39150,
+      "surface": "turf",
+      "address": "One Blue Jays Way",
+      "city": "Toronto",
+      "state": "ON",
+      "zip": "M5V1J3",
+      "country": "CAN",
+      "id": "84d72338-2173-4a90-9d25-99adc6c86f4b",
+      "field_orientation": "N",
+      "stadium_type": "retractable",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 328,
+        "lcf": 368,
+        "cf": 400,
+        "rcf": 359,
+        "rf": 328,
+        "mlf": 348,
+        "mlcf": 381,
+        "mrcf": 391,
+        "mrf": 348
+      },
+      "location": {
+        "lat": "43.6417388",
+        "lng": "-79.3892547"
+      }
+    },
+    {
+      "name": "Coors Field",
+      "market": "Colorado",
+      "capacity": 50144,
+      "surface": "grass",
+      "address": "2001 Blake Street",
+      "city": "Denver",
+      "state": "CO",
+      "zip": "80205",
+      "country": "USA",
+      "id": "85dd5cd6-7324-4b52-a1cc-68f816d0cdce",
+      "field_orientation": "N",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Mountain",
+      "distances": {
+        "lf": 347,
+        "lcf": 390,
+        "cf": 415,
+        "rcf": 375,
+        "rf": 350,
+        "mlf": 361,
+        "mlcf": 420,
+        "mrcf": 391,
+        "mrf": 424
+      },
+      "location": {
+        "lat": "39.7559779",
+        "lng": "-104.9933491"
+      }
+    },
+    {
+      "name": "Sutter Health Park",
+      "market": "Athletics",
+      "capacity": 14014,
+      "surface": "grass",
+      "address": "400 Ballpark Drive",
+      "city": "West Sacramento",
+      "state": "CA",
+      "zip": "95691",
+      "country": "USA",
+      "id": "8bec37a2-c1d4-4134-a10f-53d2da5bbb2c",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Pacific",
+      "distances": {
+        "lf": 330,
+        "lcf": 380,
+        "cf": 403,
+        "rcf": 380,
+        "rf": 325
+      },
+      "location": {
+        "lat": "38.579609",
+        "lng": "-121.515038"
+      }
+    },
+    {
+      "name": "Fenway Park",
+      "market": "Boston",
+      "capacity": 37755,
+      "surface": "grass",
+      "address": "4 Yawkey Way",
+      "city": "Boston",
+      "state": "MA",
+      "zip": "02215",
+      "country": "USA",
+      "id": "b27b0dc5-c2c5-401d-b8b9-a6a2dbc225e5",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 310,
+        "lcf": 348,
+        "cf": 390,
+        "rcf": 380,
+        "rf": 302,
+        "mlf": 320,
+        "mlcf": 379,
+        "mrcf": 420,
+        "mrf": 420
+      },
+      "location": {
+        "lat": "42.34584359999999",
+        "lng": "-71.09878189999999"
+      }
+    },
+    {
+      "name": "Citizens Bank Park",
+      "market": "Philadelphia",
+      "capacity": 42901,
+      "surface": "grass",
+      "address": "One Citizens Bank Way",
+      "city": "Philadelphia",
+      "state": "PA",
+      "zip": "19148",
+      "country": "USA",
+      "id": "b4186004-b6d0-42e7-8dc1-82ef0d946ecc",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 329,
+        "lcf": 369,
+        "cf": 401,
+        "rcf": 398,
+        "rf": 330,
+        "mlf": 349,
+        "mlcf": 381,
+        "mrcf": 384,
+        "mrf": 369
+      },
+      "location": {
+        "lat": "39.9059929",
+        "lng": "-75.1666401"
+      }
+    },
+    {
+      "name": "Globe Life Field",
+      "market": "Texas",
+      "capacity": 40000,
+      "surface": "turf",
+      "address": "734 Stadium Drive",
+      "city": "Arlington",
+      "state": "TX",
+      "zip": "76011",
+      "country": "USA",
+      "id": "b4372592-9dac-4387-864b-dfc94dffd645",
+      "field_orientation": "SW",
+      "stadium_type": "retractable",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 329,
+        "lcf": 372,
+        "cf": 407,
+        "rcf": 374,
+        "rf": 326
+      },
+      "location": {
+        "lat": "32.747300",
+        "lng": "-97.081820"
+      }
+    },
+    {
+      "name": "Nationals Park",
+      "market": "Washington",
+      "capacity": 41376,
+      "surface": "grass",
+      "address": "1500 South Capitol Street SE",
+      "city": "Washington",
+      "state": "DC",
+      "zip": "20003",
+      "country": "USA",
+      "id": "bb062fb1-e268-412e-b3d2-2ddb6acc1822",
+      "field_orientation": "N",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 337,
+        "lcf": 377,
+        "cf": 402,
+        "rcf": 370,
+        "rf": 335,
+        "mlf": 351,
+        "mlcf": 390,
+        "mrcf": 390,
+        "mrf": 351
+      },
+      "location": {
+        "lat": "38.8730933",
+        "lng": "-77.0075727"
+      }
+    },
+    {
+      "name": "Chase Field",
+      "market": "Arizona",
+      "capacity": 48359,
+      "surface": "turf",
+      "address": "401 East Jefferson Street",
+      "city": "Phoenix",
+      "state": "AZ",
+      "zip": "85004",
+      "country": "USA",
+      "id": "bf05de0d-7ced-4a19-8e17-2bbd985f8a92",
+      "field_orientation": "N",
+      "stadium_type": "retractable",
+      "time_zone": "US/Arizona",
+      "distances": {
+        "lf": 328,
+        "lcf": 376,
+        "cf": 407,
+        "rcf": 376,
+        "rf": 335,
+        "mlf": 359,
+        "mlcf": 412,
+        "mrcf": 413,
+        "mrf": 414
+      },
+      "location": {
+        "lat": "33.445302",
+        "lng": "-112.066687"
+      }
+    },
+    {
+      "name": "loanDepot park",
+      "market": "Miami",
+      "capacity": 37446,
+      "surface": "turf",
+      "address": "501 Marlins Way",
+      "city": "Miami",
+      "state": "FL",
+      "zip": "33125",
+      "country": "USA",
+      "id": "d5a66fb3-ff26-4f36-910c-3df5cedb36b3",
+      "field_orientation": "SE",
+      "stadium_type": "retractable",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 344,
+        "lcf": 386,
+        "cf": 407,
+        "rcf": 392,
+        "rf": 335,
+        "mlf": 360,
+        "mlcf": 395,
+        "mrcf": 405,
+        "mrf": 360
+      },
+      "location": {
+        "lat": "25.7780567",
+        "lng": "-80.2194087"
+      }
+    },
+    {
+      "name": "Comerica Park",
+      "market": "Detroit",
+      "capacity": 41083,
+      "surface": "grass",
+      "address": "2100 Woodward Avenue",
+      "city": "Detroit",
+      "state": "MI",
+      "zip": "48226",
+      "country": "USA",
+      "id": "ef9a5eef-06c6-4963-ac70-7fd02c8c8d42",
+      "field_orientation": "SE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 342,
+        "lcf": 402,
+        "cf": 412,
+        "rcf": 365,
+        "rf": 330,
+        "mlf": 370,
+        "mlcf": 406,
+        "mrcf": 393,
+        "mrf": 350
+      },
+      "location": {
+        "lat": "42.3391886",
+        "lng": "-83.04947829999999"
+      }
+    },
+    {
+      "name": "Daikin Park",
+      "market": "Houston",
+      "capacity": 41000,
+      "surface": "grass",
+      "address": "501 Crawford Street",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77002",
+      "country": "USA",
+      "id": "f0600f04-1386-4c61-a412-804960c46cb1",
+      "field_orientation": "N",
+      "stadium_type": "retractable",
+      "time_zone": "US/Central",
+      "distances": {
+        "lf": 315,
+        "lcf": 362,
+        "cf": 409,
+        "rcf": 373,
+        "rf": 326,
+        "mlf": 347,
+        "mlcf": 404,
+        "mrcf": 393,
+        "mrf": 347
+      },
+      "location": {
+        "lat": "29.7577058",
+        "lng": "-95.35453989999999"
+      }
+    },
+    {
+      "name": "Great American Ball Park",
+      "market": "Cincinnati",
+      "capacity": 43891,
+      "surface": "grass",
+      "address": "100 Joe Nuxhall Way",
+      "city": "Cincinnati",
+      "state": "OH",
+      "zip": "45202",
+      "country": "USA",
+      "id": "f102d8fb-de67-4b86-9053-8b55f578d45c",
+      "field_orientation": "SE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 328,
+        "lcf": 379,
+        "cf": 404,
+        "rcf": 370,
+        "rf": 325,
+        "mlf": 356,
+        "mlcf": 391,
+        "mrcf": 391,
+        "mrf": 356
+      },
+      "location": {
+        "lat": "39.097736",
+        "lng": "-84.5084966"
+      }
+    },
+    {
+      "name": "T-Mobile Park",
+      "market": "Seattle",
+      "capacity": 47929,
+      "surface": "grass",
+      "address": "1516 First Avenue South",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98134",
+      "country": "USA",
+      "id": "f1c03dac-3c0f-437c-a325-8d5702cd321a",
+      "field_orientation": "NE",
+      "stadium_type": "retractable",
+      "time_zone": "US/Pacific",
+      "distances": {
+        "lf": 331,
+        "lcf": 378,
+        "cf": 401,
+        "rcf": 381,
+        "rf": 326,
+        "mlf": 358,
+        "mlcf": 399,
+        "mrcf": 391,
+        "mrf": 353
+      },
+      "location": {
+        "lat": "47.5899037",
+        "lng": "-122.3337561"
+      }
+    },
+    {
+      "name": "George M. Steinbrenner Field",
+      "market": "Tampa Bay",
+      "capacity": 11026,
+      "surface": "grass",
+      "address": "1 Steinbrenner Drive",
+      "city": "Tampa",
+      "state": "FL",
+      "zip": "33614",
+      "country": "USA",
+      "id": "fca673a0-c7f8-42c3-868b-5bcb681c089d",
+      "field_orientation": "NE",
+      "stadium_type": "outdoor",
+      "time_zone": "US/Eastern",
+      "distances": {
+        "lf": 318,
+        "lcf": 339,
+        "cf": 408,
+        "rcf": 385,
+        "rf": 314
+      },
+      "location": {
+        "lat": "27.979330",
+        "lng": "-82.508041"
+      }
+    }
+  ],
+  "_comment": "Generation started @ 2025-10-06 21:51:08 +0000 ended @ 2025-10-06 21:51:08 +0000"
+}
