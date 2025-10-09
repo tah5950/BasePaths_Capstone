@@ -3,3 +3,16 @@ CREATE TABLE users (
     username VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE ballpark (
+    ballpark_id INTEGER PRIMARY KEY,
+    name VARCHAR(255) UNIQUE NOT NULL,
+    team_name VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    lat DOUBLE PRECISION NOT NULL,
+    lon DOUBLE PRECISION NOT NULL,
+    CONSTRAINT chk_lat CHECK (lat BETWEEN -90 AND 90),
+    CONSTRAINT chk_lon CHECK (lon BETWEEN -180 AND 180)
+);
