@@ -1,17 +1,11 @@
 package psu.basepaths.controller;
 
 import psu.basepaths.model.BallparkDTO;
-import psu.basepaths.model.UserDTO;
 import psu.basepaths.service.BallparkService;
-import psu.basepaths.service.JwtService;
-import psu.basepaths.service.UserService;
 
-import java.util.Map;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

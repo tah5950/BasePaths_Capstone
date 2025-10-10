@@ -1,10 +1,13 @@
 package psu.basepaths.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,7 +18,7 @@ public class Ballpark {
     @Column(name = "ballpark_id")
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "team_name")
@@ -35,6 +38,9 @@ public class Ballpark {
 
     @Column(name = "lon")
     private double longitude;
+
+    @OneToMany(mappedBy = "ballpark", cascade = CascadeType.ALL)
+    private List<Game> games = new ArrayList<>();
 
     // Getters and Setters
     public int getId() { return id; }
@@ -59,5 +65,7 @@ public class Ballpark {
     public void setLatitude(double latitude) { this.latitude = latitude; }
 
     public double getLongitude() { return longitude; }
-    public void setLogitude(double longitude) { this.longitude = longitude; }
+    public void setLongitude(double longitude) { this.longitude = longitude; }
+
+    public List<Game> getGames() { return games; }
 }

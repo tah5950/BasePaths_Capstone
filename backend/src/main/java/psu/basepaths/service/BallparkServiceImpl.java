@@ -2,10 +2,13 @@ package psu.basepaths.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import psu.basepaths.model.Ballpark;
 import psu.basepaths.model.BallparkDTO;
 import psu.basepaths.repository.BallparkRepository;
 
+@Service
 public class BallparkServiceImpl implements BallparkService{
     private final BallparkRepository ballparkRepository;
 
@@ -13,12 +16,14 @@ public class BallparkServiceImpl implements BallparkService{
         this.ballparkRepository = ballparkRepository;
     }
 
+    @Override
     public int loadBallparks(List<BallparkDTO> ballparks){
         int added = 0;
         for(BallparkDTO ballpark: ballparks){
             Ballpark existing = ballparkRepository.findById(ballpark.id()).orElse(null);
             if(existing == null){
-                ballparkRepository.save(convertToEntity(ballpark));
+                Ballpark ent = convertToEntity(ballpark);
+                ballparkRepository.save(ent);
                 added++;
             }
         }
@@ -48,7 +53,7 @@ public class BallparkServiceImpl implements BallparkService{
         ballpark.setState(ballparkDTO.state());
         ballpark.setCountry(ballparkDTO.country());
         ballpark.setLatitude(ballparkDTO.latitude());
-        ballpark.setLogitude(ballparkDTO.longitude());
+        ballpark.setLongitude(ballparkDTO.longitude());
         return ballpark;
     }
 }
