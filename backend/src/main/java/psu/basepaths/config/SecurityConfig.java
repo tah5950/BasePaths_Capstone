@@ -9,8 +9,14 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import java.io.IOException;
 import java.util.List;
 
 @Configuration
@@ -21,7 +27,7 @@ public class SecurityConfig {
         return http.csrf(csrf -> csrf.disable())
                 .cors(cors -> {})
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/user/register", "/api/user/login", "/api/ballpark/load", "/api/game/load", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                    .requestMatchers("/api/user/ping", "/api/user/register", "/api/user/login", "/api/ballpark/load", "/api/game/load", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                     .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
