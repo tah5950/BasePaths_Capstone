@@ -92,8 +92,6 @@ jobs:
           working-directory: .
           config-file: cypress.config.js
           browser: chrome
-          wait-on: 'http://localhost:8080,http://localhost:5173'
-          wait-on-timeout: 120
 
       - uses: actions/upload-artifact@v4
         if: failure()
