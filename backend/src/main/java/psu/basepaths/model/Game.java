@@ -17,9 +17,8 @@ import jakarta.persistence.Table;
 public class Game {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id")
-    private Long id;
+    private String id;
 
     @Column(name = "date")
     private Date date;
@@ -35,8 +34,8 @@ public class Game {
     private Ballpark ballpark;
 
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public Date getDate() { return date; }
     public void setDate(Date date) { this.date = date; }

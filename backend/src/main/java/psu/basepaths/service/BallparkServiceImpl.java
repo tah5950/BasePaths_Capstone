@@ -20,7 +20,7 @@ public class BallparkServiceImpl implements BallparkService{
     public int loadBallparks(List<BallparkDTO> ballparks){
         int added = 0;
         for(BallparkDTO ballpark: ballparks){
-            Ballpark existing = ballparkRepository.findById(ballpark.id()).orElse(null);
+            Ballpark existing = ballparkRepository.findById(ballpark.ballparkId()).orElse(null);
             if(existing == null){
                 Ballpark ent = convertToEntity(ballpark);
                 ballparkRepository.save(ent);
@@ -46,14 +46,14 @@ public class BallparkServiceImpl implements BallparkService{
      // Convert BallparkDTO to Ballpark Entity
     private Ballpark convertToEntity(BallparkDTO ballparkDTO) {
         Ballpark ballpark = new Ballpark();
-        ballpark.setId(ballparkDTO.id());
+        ballpark.setId(ballparkDTO.ballparkId());
         ballpark.setName(ballparkDTO.name());
         ballpark.setTeamName(ballparkDTO.teamName());
         ballpark.setCity(ballparkDTO.city());
         ballpark.setState(ballparkDTO.state());
         ballpark.setCountry(ballparkDTO.country());
-        ballpark.setLatitude(ballparkDTO.latitude());
-        ballpark.setLongitude(ballparkDTO.longitude());
+        ballpark.setLatitude(ballparkDTO.lat());
+        ballpark.setLongitude(ballparkDTO.lon());
         return ballpark;
     }
 }
