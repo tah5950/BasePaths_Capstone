@@ -15,6 +15,7 @@ def format_schedule(raw: Path, output: Path):
     for date in data.get("dates", []):
         for game in date.get("games", []):
             processed.append({
+                "gameId": game.get("gameGuid"),
                 "date": game.get("officialDate"),
                 "awayTeam": game.get("teams", {}).get("away", {}).get("team", {}).get("name"),
                 "homeTeam": game.get("teams", {}).get("home", {}).get("team", {}).get("name"),

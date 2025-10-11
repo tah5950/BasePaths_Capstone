@@ -18,7 +18,7 @@ CREATE TABLE ballpark (
 );
 
 CREATE TABLE game (
-    game_id SERIAL PRIMARY KEY,
+    game_id VARCHAR(255) PRIMARY KEY,
     home_team VARCHAR(255) NOT NULL,
     away_team VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
