@@ -65,7 +65,7 @@ curl -s -X POST "$BACKEND_URL/api/ballpark/load" \
     -H "Content-Type: application/json" \
     -d @"$BALLPARK_DATA"
 
-echo "📅 Loading ballpark data..."
+echo "📅 Loading schedule data..."
 curl -s -X POST "$BACKEND_URL/api/game/load" \
     -H "X-LOAD-KEY: $LOAD_KEY" \
     -H "Content-Type: application/json" \
