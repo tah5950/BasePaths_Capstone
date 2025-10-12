@@ -8,20 +8,6 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: basepaths
-        ports: [5432:5432]
-        options: >-
-          --health-cmd "pg_isready -U postgres"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       # Checkout Branch
       - uses: actions/checkout@v4
@@ -47,7 +33,8 @@ jobs:
           ./gradlew test jacocoTestReport --no-daemon
       
       # Upload reports as artifacts
-      - uses: actions/upload-artifact@v4
+      - name: Upload Backend Coverage
+        uses: actions/upload-artifact@v4
         with:
           name: backend-coverage
           path: backend/build/reports/jacoco/test/html
@@ -74,17 +61,18 @@ jobs:
           cd frontend
           npm test -- --coverage
 
-      - name: Start Backend
-        run: |
-          cd backend
-          nohup ./gradlew bootRun > backend.log 2>&1 &
-        shell: bash
+      - name: Upload Frontend Coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: frontend/coverage
 
-      - name: Start Frontend
+      
+
+      - name: Start Application
         run: |
-          cd frontend
-          nohup npm run preview -- --host --port 5173 > frontend.log 2>&1 &
-        shell: bash
+          docker compose up -d --build
+          docker ps -a
 
       - name: Wait for services
         run: sleep 15
@@ -98,8 +86,12 @@ jobs:
           curl -v http://localhost:5173 || true
 
       # Cypress tests will need seed data, which can be setup as part of future task
-      # - name: Run Cypress
-      #   uses: cypress-io/github-action@v6
+      - name: Run Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: .
+          config-file: cypress.config.js
+          browser: chrome
 
       - uses: actions/upload-artifact@v4
         if: failure()
