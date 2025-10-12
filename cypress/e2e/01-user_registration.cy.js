@@ -15,10 +15,11 @@ describe("User Registration Systems Tests", () => {
     });
 
     it("SYS2 - Register Duplicate User", () => {
+        cy.register();
         cy.visit("/createaccount");
 
-        cy.get('input[name="username"]').type("cyValidUser"); // Will be seeded in database
-        cy.get('input[name="password"]').type("cyValidPass1!");
+        cy.get('input[name="username"]').type("cyTestUser"); // Will be seeded in database
+        cy.get('input[name="password"]').type("cyTestPass1!");
 
         cy.intercept("POST", "http://localhost:8080/api/user/register").as("register");
         cy.contains("button", /Create/i).click();
