@@ -30,7 +30,7 @@ jobs:
       - name: Backend Tests
         run: |
           cd backend
-          ./gradlew test jacocoTestReport --no-daemon
+          ./gradlew test jacocoTestReport --no-daemon --rerun-tasks --info --console=plain
       
       # Upload reports as artifacts
       - name: Upload Backend Coverage
