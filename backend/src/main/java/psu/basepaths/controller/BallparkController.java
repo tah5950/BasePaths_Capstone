@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/ballpark")
 public class BallparkController {
@@ -23,7 +25,7 @@ public class BallparkController {
     }
 
     @PostMapping("/load")
-    public ResponseEntity<?> loadBallparks(@RequestBody List<BallparkDTO> ballparks, @RequestHeader("X-LOAD-KEY") String loadKey) {
+    public ResponseEntity<?> loadBallparks(@RequestBody @Valid List<@Valid BallparkDTO> ballparks, @RequestHeader("X-LOAD-KEY") String loadKey) {
 
         if(!loadKey.equals(loadSecret)){
             return ResponseEntity.status(403).body("Unauthorized data load");

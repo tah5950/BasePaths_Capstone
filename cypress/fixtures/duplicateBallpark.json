@@ -1,0 +1,32 @@
+[
+   {
+    "ballparkId": 5,
+    "name": "Progressive Field",
+    "teamName": "Cleveland Guardians",
+    "city": "Cleveland",
+    "state": "OH",
+    "country": "USA",
+    "lat": "41.4957048",
+    "lon": "-81.6852732"
+  },
+  {
+    "ballparkId": 3289,
+    "name": "Citi Field",
+    "teamName": "New York Mets",
+    "city": "Flushing, Queens",
+    "state": "NY",
+    "country": "USA",
+    "lat": "40.7564124",
+    "lon": "-73.84589369999999"
+  },
+  {
+    "ballparkId": 2395,
+    "name": "Oracle Park",
+    "teamName": "San Francisco Giants",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "lat": "37.7784199",
+    "lon": "-122.3906212"
+  }
+]

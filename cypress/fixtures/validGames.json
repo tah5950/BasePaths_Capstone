@@ -1,0 +1,23 @@
+[
+  {
+    "gameId": "cc3d3afe-591e-44b8-a273-5730f50910b7",
+    "date": "2026-03-25",
+    "awayTeam": "New York Yankees",
+    "homeTeam": "San Francisco Giants",
+    "ballparkId": 3289
+  },
+  {
+    "gameId": "861c9e5d-85c1-42ec-bbcf-26f487127710",
+    "date": "2026-03-26",
+    "awayTeam": "Boston Red Sox",
+    "homeTeam": "Cincinnati Reds",
+    "ballparkId": 3289
+  },
+  {
+    "gameId": "323f3bf8-6ef7-46c5-8dbd-8f5b18378215",
+    "date": "2026-03-26",
+    "awayTeam": "Pittsburgh Pirates",
+    "homeTeam": "New York Mets",
+    "ballparkId": 3289
+  }
+]
