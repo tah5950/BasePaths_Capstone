@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/game")
 public class GameController {
@@ -23,13 +25,19 @@ public class GameController {
     }
 
     @PostMapping("/load")
-    public ResponseEntity<?> loadGames(@RequestBody List<GameDTO> games, @RequestHeader("X-LOAD-KEY") String loadKey) {
+    public ResponseEntity<?> loadGames(@RequestBody @Valid List<@Valid GameDTO> games, @RequestHeader("X-LOAD-KEY") String loadKey) {
 
         if(!loadKey.equals(loadSecret)){
             return ResponseEntity.status(403).body("Unauthorized data load");
         }
 
-        int added = gameService.loadGames(games);
+        int added = 0;
+        try{ 
+            added = gameService.loadGames(games);
+        }
+        catch(RuntimeException ex){
+             return ResponseEntity.status(403).body("Unauthorized data load. " + ex.getMessage());
+        }
         return ResponseEntity.ok("Game data load complete. " + added + " new entries added.");
     }
 }

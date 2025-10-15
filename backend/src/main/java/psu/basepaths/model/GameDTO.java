@@ -2,4 +2,12 @@ package psu.basepaths.model;
 
 import java.util.Date;
 
-public record GameDTO(String gameId, Date date, String homeTeam, String awayTeam, int ballparkId) {}
+import jakarta.validation.constraints.NotNull;
+
+public record GameDTO(
+    @NotNull String gameId,
+    @NotNull Date date,
+    @NotNull String homeTeam,
+    @NotNull String awayTeam,
+    @NotNull int ballparkId
+) {}

@@ -1,3 +1,14 @@
 package psu.basepaths.model;
 
-public record BallparkDTO(int ballparkId, String name, String teamName, String city, String state, String country, double lat, double lon) {}
+import jakarta.validation.constraints.NotNull;
+
+public record BallparkDTO(
+    @NotNull int ballparkId,
+    @NotNull String name,
+    @NotNull String teamName,
+    @NotNull String city,
+    @NotNull String state,
+    @NotNull String country,
+    @NotNull double lat,
+    @NotNull double lon
+) {}

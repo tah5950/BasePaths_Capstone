@@ -28,7 +28,7 @@ public class GameServiceImpl implements GameService{
             Game existing = gameRepository.findById(game.gameId()).orElse(null);
             if(existing == null){
                 Game ent = convertToEntity(game);
-                gameRepository.save(convertToEntity(game));
+                gameRepository.save(ent);
                 added++;
             }
         }

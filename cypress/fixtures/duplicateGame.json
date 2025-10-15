@@ -1,0 +1,23 @@
+[
+  {
+    "gameId": "2cd55b87-066d-4a9c-9f42-ed495c94c773",
+    "date": "2026-03-26",
+    "awayTeam": "Athletics",
+    "homeTeam": "Toronto Blue Jays",
+    "ballparkId": 3289
+  },
+  {
+    "gameId": "861c9e5d-85c1-42ec-bbcf-26f487127710",
+    "date": "2026-03-26",
+    "awayTeam": "Boston Red Sox",
+    "homeTeam": "Cincinnati Reds",
+    "ballparkId": 3289
+  },
+  {
+    "gameId": "355d7da9-101e-4715-a16c-7ab863b9eb98",
+    "date": "2026-03-26",
+    "awayTeam": "Minnesota Twins",
+    "homeTeam": "Baltimore Orioles",
+    "ballparkId": 3289
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "ballparkId": 2680,
+    "name": "PETCO Park",
+    "teamName": "San Diego Padres",
+    "city": "San Diego",
+    "state": "CA",
+    "country": "USA",
+    "lat": "32.70752890000001",
+    "lon": "-117.1568083"
+  },
+  {
+    "ballparkId": 3289,
+    "name": "Citi Field",
+    "teamName": "New York Mets",
+    "city": "Flushing, Queens",
+    "state": "NY",
+    "country": "USA",
+    "lat": "40.7564124",
+    "lon": "-73.84589369999999"
+  }
+]
