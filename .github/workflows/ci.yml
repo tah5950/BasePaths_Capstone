@@ -1,6 +1,12 @@
 name: CI Pipeline
 
 on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to run against
+        default: main
+        required: true
   pull_request:
     branches: ["main"]
 
@@ -11,6 +17,9 @@ jobs:
     steps:
       # Checkout Branch
       - uses: actions/checkout@v4
+        if: inputs.branch != ''
+        with:
+          ref: ${{ github.event.inputs.branch }}
 
       - name: Set up JDK 24
         uses: actions/setup-java@v4
