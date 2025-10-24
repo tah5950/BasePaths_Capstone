@@ -29,3 +29,40 @@ CREATE TABLE game (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+CREATE TABLE trip (
+    tripid SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    start_latitude DOUBLE PRECISION NOT NULL,
+    start_longitude DOUBLE PRECISION NOT NULL,
+    end_latitude DOUBLE PRECISION NOT NULL,
+    end_longitude DOUBLE PRECISION NOT NULL,
+    is_generated BOOLEAN NOT NULL,
+    max_hours_per_day INTEGER,
+    userid BIGINT NOT NULL,
+    CONSTRAINT fk_users
+        FOREIGN KEY (userid)
+        REFERENCES users (userid)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE trip_stop (
+    tripstopid SERIAL PRIMARY KEY,
+    date DATE NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    ballpark_id INTEGER,
+    game_id VARCHAR(255),
+    tripid BIGINT NOT NULL,
+    CONSTRAINT fk_trip
+        FOREIGN KEY (tripid)
+        REFERENCES trip (tripid)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_ballpark 
+        FOREIGN KEY (ballpark_id)
+        REFERENCES ballpark (ballpark_id),
+    CONSTRAINT fk_game 
+        FOREIGN KEY (game_id)
+        REFERENCES game (game_id)
+);
