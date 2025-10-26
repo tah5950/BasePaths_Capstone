@@ -18,7 +18,7 @@ public class TripStop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tripstopid")
-    private long id;
+    private Long id;
 
     @Column(name = "date")
     private Date date;
@@ -35,4 +35,23 @@ public class TripStop {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tripid", nullable = false)
     private Trip trip;
+
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Date getDate() { return date; }
+    public void setDate(Date date) { this.date = date; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+
+    public int getBallparkId() { return ballparkId; }
+    public void setBallparkId(int ballparkId) {this.ballparkId = ballparkId; }
+
+    public String getGameId() { return gameId; }
+    public void setGameId(String gameId) { this.gameId = gameId; }
+
+    public Trip getTrip() { return trip; }
+    public void setTrip(Trip trip) { this.trip = trip; }
 }

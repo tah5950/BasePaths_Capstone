@@ -21,7 +21,7 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tripid")
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -35,13 +35,13 @@ public class Trip {
     @Column(name = "start_latitude")
     private double startLatitude;
 
-    @Column(name = "start_longitude")
+    @Column(name = "start_Longitude")
     private double startLongitude;
 
     @Column(name = "end_latitude")
     private double endLatitude;
 
-    @Column(name = "end_longitude")
+    @Column(name = "end_Longitude")
     private double endLongitude;
 
     @Column(name = "is_generated")
@@ -51,14 +51,14 @@ public class Trip {
     private int maxHoursPerDay;
 
     @Column(name = "userid")
-    private long userid;
+    private Long userId;
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<TripStop> tripStops = new ArrayList<>();
 
     // Getters and Setters
-    public long getId() { return id; }
-    public void setId(long id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -87,8 +87,8 @@ public class Trip {
     public int getMaxHoursPerDay() { return maxHoursPerDay; }
     public void setMaxHoursPerDay(int maxHoursPerDay) { this.maxHoursPerDay = maxHoursPerDay; }
 
-    public long getUserId() { return userid; }
-    public void setUserId(long userid) { this.userid = userid; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
     public List<TripStop> getTripStops() { return tripStops; }
     public void setTripStops(List<TripStop> tripStops) { this.tripStops = tripStops; }

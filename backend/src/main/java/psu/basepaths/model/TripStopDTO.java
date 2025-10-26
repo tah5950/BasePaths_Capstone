@@ -3,9 +3,9 @@ package psu.basepaths.model;
 import java.util.Date;
 
 public record TripStopDTO(
-    long tripStopId,
+    Long tripStopId,
     Date date,
     String location,
-    int ballparkId,
+    Integer ballparkId,
     String gameId
 ) {}
