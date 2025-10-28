@@ -25,6 +25,8 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public TripDTO createTrip(TripDTO tripDTO) {
+        validateTrip(tripDTO);
+
         Trip trip = convertToEntity(tripDTO);
 
         Trip createdTrip = tripRepository.save(trip);
@@ -76,6 +78,21 @@ public class TripServiceImpl implements TripService {
 
         Trip updatedTrip = tripRepository.save(existingTrip);
         return convertToDTO(updatedTrip);
+    }
+
+    private void validateTrip(TripDTO tripDTO){
+        if(tripDTO.name().isEmpty()){
+            throw new IllegalArgumentException("Name must not be blank");
+        }
+        if(tripDTO.startDate() == null) {
+            throw new IllegalArgumentException("Start Date must not be empty");
+        }
+        if(tripDTO.endDate() == null) {
+            throw new IllegalArgumentException("End Date must not be empty");
+        }
+        if(tripDTO.startDate().after(tripDTO.endDate())){
+            throw new IllegalArgumentException("Start Date must be before End Date");
+        }
     }
     
     private Trip convertToEntity(TripDTO tripDTO) {
