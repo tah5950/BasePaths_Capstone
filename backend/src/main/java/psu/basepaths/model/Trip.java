@@ -33,22 +33,22 @@ public class Trip {
     private Date endDate;
 
     @Column(name = "start_latitude")
-    private double startLatitude;
+    private Double startLatitude;
 
     @Column(name = "start_Longitude")
-    private double startLongitude;
+    private Double startLongitude;
 
     @Column(name = "end_latitude")
-    private double endLatitude;
+    private Double endLatitude;
 
     @Column(name = "end_Longitude")
-    private double endLongitude;
+    private Double endLongitude;
 
     @Column(name = "is_generated")
     private boolean isGenerated;
 
     @Column(name = "max_hours_per_day")
-    private int maxHoursPerDay;
+    private Integer maxHoursPerDay;
 
     @Column(name = "userid")
     private Long userId;
@@ -69,23 +69,23 @@ public class Trip {
     public Date getEndDate() { return endDate; }
     public void setEndDate(Date endDate) { this.endDate = endDate; }
 
-    public double getStartLatitude() { return startLatitude; }
-    public void setStartLatitude(double startLatitude) { this.startLatitude = startLatitude; }
+    public Double getStartLatitude() { return startLatitude; }
+    public void setStartLatitude(Double startLatitude) { this.startLatitude = startLatitude; }
 
-    public double getStartLongitude() { return startLongitude; }
-    public void setStartLongitude(double startLongitude) { this.startLongitude = startLongitude; }
+    public Double getStartLongitude() { return startLongitude; }
+    public void setStartLongitude(Double startLongitude) { this.startLongitude = startLongitude; }
 
-    public double getEndLatitude() { return endLatitude; }
-    public void setEndLatitude(double endLatitude) { this.endLatitude = endLatitude; }
+    public Double getEndLatitude() { return endLatitude; }
+    public void setEndLatitude(Double endLatitude) { this.endLatitude = endLatitude; }
 
-    public double getEndLongitude() { return endLongitude; }
-    public void setEndLongitude(double endLongitude) { this.endLongitude = endLongitude; }
+    public Double getEndLongitude() { return endLongitude; }
+    public void setEndLongitude(Double endLongitude) { this.endLongitude = endLongitude; }
 
     public boolean getIsGenerated() { return isGenerated; }
     public void setIsGenerated(boolean isGenerated) { this.isGenerated = isGenerated; }
 
-    public int getMaxHoursPerDay() { return maxHoursPerDay; }
-    public void setMaxHoursPerDay(int maxHoursPerDay) { this.maxHoursPerDay = maxHoursPerDay; }
+    public Integer getMaxHoursPerDay() { return maxHoursPerDay; }
+    public void setMaxHoursPerDay(Integer maxHoursPerDay) { this.maxHoursPerDay = maxHoursPerDay; }
 
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
