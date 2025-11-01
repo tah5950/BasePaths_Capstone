@@ -9,4 +9,5 @@ import psu.basepaths.model.Trip;
 
 public interface TripRepository extends JpaRepository<Trip, Long> {
     public Optional<List<Trip>> findByUserId(Long userid);
+    public Optional<Trip> findByIdAndUserId(Long tripid, Long userid);
 }

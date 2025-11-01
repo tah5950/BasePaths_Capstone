@@ -62,4 +62,18 @@ public class TripController {
         TripDTO created = tripService.createTrip(tripDTO);
         return ResponseEntity.ok(created);
     }
+
+    @GetMapping("/{tripid}")
+    public ResponseEntity<?> getTripById(@PathVariable Long tripid, Authentication auth) {
+        try{
+            User user = (User) auth.getPrincipal();
+            TripDTO trip = tripService.getTripById(tripid, user.getId());
+            return ResponseEntity.ok(trip);
+        } 
+        catch(RuntimeException e){
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("error", e.getMessage()));
+        }
+    }
 }

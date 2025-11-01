@@ -30,6 +30,14 @@ public class BallparkServiceImpl implements BallparkService{
         return added;
     }
 
+    @Override
+    public BallparkDTO getBallparkById(int ballparkId){
+        Ballpark ballpark = ballparkRepository.findById(ballparkId)
+            .orElseThrow(() -> new RuntimeException("Game not found"));
+
+        return convertToDTO(ballpark);
+    }
+
     private BallparkDTO convertToDTO(Ballpark ballpark){
         return new BallparkDTO(
             ballpark.getId(),

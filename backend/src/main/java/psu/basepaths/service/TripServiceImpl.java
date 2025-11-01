@@ -80,6 +80,14 @@ public class TripServiceImpl implements TripService {
         return convertToDTO(updatedTrip);
     }
 
+    @Override
+    public TripDTO getTripById(Long tripid, Long userid) {
+        Trip trip = tripRepository.findByIdAndUserId(tripid, userid)
+            .orElseThrow(() -> new RuntimeException("Trip not found or not accessible by user: " + userid));
+
+        return convertToDTO(trip);
+    }
+
     private void validateTrip(TripDTO tripDTO){
         if(tripDTO.name().isEmpty()){
             throw new IllegalArgumentException("Name must not be blank");
