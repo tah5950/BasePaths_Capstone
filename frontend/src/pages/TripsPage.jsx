@@ -18,8 +18,7 @@ function TripsPage() {
     const handleClose = () => setOpenForm(false);
 
     const handleTripCreated = (newTrip) => {
-        console.log("Trip created: ", newTrip);
-        // TODO: Refresh Trip List
+        setTrips((prevTrips) => [...prevTrips, newTrip]);
     }
 
     useEffect(() => {
@@ -51,16 +50,22 @@ function TripsPage() {
             accessorKey: "startDate", 
             header: "Start Date",
             Cell: ({ cell }) => {
-                const date = new Date(cell.getValue());
-                return date.toLocaleDateString(); 
+                const date = cell.getValue();
+                if(!date){
+                    return "N/A";
+                }
+                return date.split("T")[0]; 
             },
         },
         { 
             accessorKey: "endDate", 
             header: "End Date",
             Cell: ({ cell }) => {
-                const date = new Date(cell.getValue());
-                return date.toLocaleDateString(); 
+                const date = cell.getValue();
+                if(!date){
+                    return "N/A";
+                }
+                return date.split("T")[0];  
             },
         },
     ]
