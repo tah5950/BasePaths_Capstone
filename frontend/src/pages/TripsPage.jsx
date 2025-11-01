@@ -44,6 +44,16 @@ function TripsPage() {
         }
     };
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString + "T00:00:00"); // ensures local date
+        return date.toLocaleDateString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+        });
+    }
+
     const columns = [
         { accessorKey: "name", header: "Trip Name" },
         { 
@@ -54,7 +64,7 @@ function TripsPage() {
                 if(!date){
                     return "N/A";
                 }
-                return date.split("T")[0]; 
+                return formatDate(date.split("T")[0]); 
             },
         },
         { 
@@ -65,7 +75,7 @@ function TripsPage() {
                 if(!date){
                     return "N/A";
                 }
-                return date.split("T")[0];  
+                return formatDate(date.split("T")[0]);
             },
         },
     ]

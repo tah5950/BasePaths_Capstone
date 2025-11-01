@@ -100,7 +100,7 @@ function TripsDetailsPage() {
     ]
 
     const formatDate = (date) =>
-        date ? new Date(date).toLocaleDateString("en-US", {
+        date ? new Date(date.split("T")[0] + "T00:00:00").toLocaleDateString("en-US", {
             weekday: "short",
             month: "short",
             day: "numeric",
