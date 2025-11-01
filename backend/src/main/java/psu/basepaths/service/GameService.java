@@ -6,4 +6,5 @@ import psu.basepaths.model.GameDTO;
 
 public interface GameService {
     public int loadGames(List<GameDTO> games);
+    public GameDTO getGameById(String gameId);
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Typography, Box, Button, Alert } from "@mui/material";
 import { MaterialReactTable } from "material-react-table";
 import { MuiNavbar } from "../components/MuiNavbar";
@@ -7,6 +8,8 @@ import { getToken } from "../utils/authUtils";
 import { API_BASE_URL } from "../config";
 
 function TripsPage() {
+    const navigate = useNavigate();
+
     const [trips, setTrips] = useState([]);
     const [openForm, setOpenForm] = useState(false);
     const [message, setMessage] = useState("");
@@ -15,8 +18,7 @@ function TripsPage() {
     const handleClose = () => setOpenForm(false);
 
     const handleTripCreated = (newTrip) => {
-        console.log("Trip created: ", newTrip);
-        // TODO: Refresh Trip List
+        setTrips((prevTrips) => [...prevTrips, newTrip]);
     }
 
     useEffect(() => {
@@ -48,16 +50,22 @@ function TripsPage() {
             accessorKey: "startDate", 
             header: "Start Date",
             Cell: ({ cell }) => {
-                const date = new Date(cell.getValue());
-                return date.toLocaleDateString(); 
+                const date = cell.getValue();
+                if(!date){
+                    return "N/A";
+                }
+                return date.split("T")[0]; 
             },
         },
         { 
             accessorKey: "endDate", 
             header: "End Date",
             Cell: ({ cell }) => {
-                const date = new Date(cell.getValue());
-                return date.toLocaleDateString(); 
+                const date = cell.getValue();
+                if(!date){
+                    return "N/A";
+                }
+                return date.split("T")[0];  
             },
         },
     ]
@@ -88,6 +96,10 @@ function TripsPage() {
                     columns={columns}
                     data={trips}
                     enableTopToolbar={false}
+                    muiTableBodyRowProps={({ row }) => ({
+                        onDoubleClick: () => navigate(`/trips/${row.original.tripId}`, { state: { trip: row.original }}),
+                        sx: { cursor: "pointer" },
+                    })}
                 />
             </Container>
         </>
