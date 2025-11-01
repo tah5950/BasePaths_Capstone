@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Typography, Box, Button, Alert } from "@mui/material";
 import { MaterialReactTable } from "material-react-table";
 import { MuiNavbar } from "../components/MuiNavbar";
@@ -7,6 +8,8 @@ import { getToken } from "../utils/authUtils";
 import { API_BASE_URL } from "../config";
 
 function TripsPage() {
+    const navigate = useNavigate();
+
     const [trips, setTrips] = useState([]);
     const [openForm, setOpenForm] = useState(false);
     const [message, setMessage] = useState("");
@@ -88,6 +91,10 @@ function TripsPage() {
                     columns={columns}
                     data={trips}
                     enableTopToolbar={false}
+                    muiTableBodyRowProps={({ row }) => ({
+                        onDoubleClick: () => navigate(`/trips/${row.original.tripId}`, { state: { trip: row.original }}),
+                        sx: { cursor: "pointer" },
+                    })}
                 />
             </Container>
         </>
