@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import psu.basepaths.model.TripDTO;
 import psu.basepaths.model.User;
+import psu.basepaths.model.dto.TripDTO;
 import psu.basepaths.service.TripService;
 
 @RestController

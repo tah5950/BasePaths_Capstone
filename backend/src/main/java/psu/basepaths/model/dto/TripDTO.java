@@ -1,4 +1,4 @@
-package psu.basepaths.model;
+package psu.basepaths.model.dto;
 
 import java.util.Date;
 import java.util.List;

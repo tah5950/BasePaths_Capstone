@@ -1,6 +1,6 @@
 package psu.basepaths.controller;
 
-import psu.basepaths.model.BallparkDTO;
+import psu.basepaths.model.dto.BallparkDTO;
 import psu.basepaths.service.BallparkService;
 
 import java.util.List;

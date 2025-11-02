@@ -1,6 +1,6 @@
 package psu.basepaths.controller;
 
-import psu.basepaths.model.UserDTO;
+import psu.basepaths.model.dto.UserDTO;
 import psu.basepaths.service.JwtService;
 import psu.basepaths.service.UserService;
 

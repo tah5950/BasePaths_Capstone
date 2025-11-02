@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import psu.basepaths.model.Ballpark;
 import psu.basepaths.model.Game;
-import psu.basepaths.model.GameDTO;
+import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.repository.BallparkRepository;
 import psu.basepaths.repository.GameRepository;
 

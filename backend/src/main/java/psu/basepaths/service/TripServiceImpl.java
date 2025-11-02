@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.lang.Collections;
 import psu.basepaths.model.Trip;
-import psu.basepaths.model.TripDTO;
 import psu.basepaths.model.TripStop;
-import psu.basepaths.model.TripStopDTO;
 import psu.basepaths.model.User;
+import psu.basepaths.model.dto.TripDTO;
+import psu.basepaths.model.dto.TripStopDTO;
 import psu.basepaths.repository.TripRepository;
 
 @Service
@@ -56,6 +56,7 @@ public class TripServiceImpl implements TripService {
         existingTrip.setEndLatitude(tripDTO.endLatitude());
         existingTrip.setEndLongitude(tripDTO.endLongitude());
         existingTrip.setIsGenerated(tripDTO.isGenerated());
+        existingTrip.setUserId(tripDTO.userId());
         existingTrip.setMaxHoursPerDay(tripDTO.maxHoursPerDay());
 
         //Update trip stops

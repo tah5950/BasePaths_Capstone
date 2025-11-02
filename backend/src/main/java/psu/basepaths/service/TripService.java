@@ -3,7 +3,7 @@ package psu.basepaths.service;
 import java.util.List;
 import java.util.Optional;
 
-import psu.basepaths.model.TripDTO;
+import psu.basepaths.model.dto.TripDTO;
 
 public interface TripService {
     public TripDTO createTrip(TripDTO tripDTO);
