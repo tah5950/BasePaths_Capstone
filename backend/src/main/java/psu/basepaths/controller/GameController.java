@@ -1,6 +1,6 @@
 package psu.basepaths.controller;
 
-import psu.basepaths.model.GameDTO;
+import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.service.GameService;
 
 import java.util.List;

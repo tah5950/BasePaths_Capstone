@@ -2,7 +2,7 @@ package psu.basepaths.service;
 
 import java.util.Optional;
 
-import psu.basepaths.model.UserDTO;
+import psu.basepaths.model.dto.UserDTO;
 
 public interface UserService {
     public UserDTO registerUser(UserDTO userDTO);

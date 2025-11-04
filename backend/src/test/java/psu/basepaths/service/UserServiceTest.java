@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 import java.util.Optional;
 
 import psu.basepaths.model.User;
-import psu.basepaths.model.UserDTO;
+import psu.basepaths.model.dto.UserDTO;
 import psu.basepaths.repository.UserRepository;
 
 @ExtendWith(MockitoExtension.class)

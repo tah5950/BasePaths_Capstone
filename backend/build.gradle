@@ -54,4 +54,12 @@ jacocoTestReport {
         html.required = true 
 		html.outputLocation = layout.buildDirectory.dir("reports/jacocoHtml")
     }
+	classDirectories.setFrom(files(classDirectories.files.collect {
+        fileTree(dir: it, exclude: [
+            '**/basepaths/config/**',
+            '**/basepaths/repository/**',
+			'**/basepaths/model/dto/**',
+			'**/basepaths/controller/**'
+        ])
+    }))
 }

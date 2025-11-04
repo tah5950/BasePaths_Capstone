@@ -21,9 +21,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import psu.basepaths.model.Ballpark;
-import psu.basepaths.model.BallparkDTO;
 import psu.basepaths.model.Game;
-import psu.basepaths.model.GameDTO;
+import psu.basepaths.model.dto.BallparkDTO;
+import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.repository.GameRepository;
 import psu.basepaths.repository.BallparkRepository;
 

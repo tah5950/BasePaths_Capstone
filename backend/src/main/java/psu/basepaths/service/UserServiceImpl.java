@@ -1,7 +1,7 @@
 package psu.basepaths.service;
 
 import psu.basepaths.model.User;
-import psu.basepaths.model.UserDTO;
+import psu.basepaths.model.dto.UserDTO;
 import psu.basepaths.repository.UserRepository;
 
 import java.util.Optional;

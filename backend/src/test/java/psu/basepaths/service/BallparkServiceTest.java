@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import psu.basepaths.model.Ballpark;
-import psu.basepaths.model.BallparkDTO;
+import psu.basepaths.model.dto.BallparkDTO;
 import psu.basepaths.repository.BallparkRepository;
 
 @ExtendWith(MockitoExtension.class)
