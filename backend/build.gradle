@@ -58,7 +58,8 @@ jacocoTestReport {
         fileTree(dir: it, exclude: [
             '**/basepaths/config/**',
             '**/basepaths/repository/**',
-			'**/basepaths/model/dto/**'
+			'**/basepaths/model/dto/**',
+			'**/basepaths/controller/**'
         ])
     }))
 }
