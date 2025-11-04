@@ -89,6 +89,12 @@ public class TripServiceImpl implements TripService {
         return convertToDTO(trip);
     }
 
+    @Override
+    public TripDTO generateTrip(TripDTO trip){
+        //NOT IMPLEMENTED
+        return null;
+    }
+
     private void validateTrip(TripDTO tripDTO){
         if(tripDTO.name().isEmpty()){
             throw new IllegalArgumentException("Name must not be blank");
