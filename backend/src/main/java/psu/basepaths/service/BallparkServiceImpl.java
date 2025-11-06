@@ -38,6 +38,13 @@ public class BallparkServiceImpl implements BallparkService{
         return convertToDTO(ballpark);
     }
 
+    @Override
+    public List<BallparkDTO> getAllBallparks(){
+        List<Ballpark> ballparks = ballparkRepository.findAll();
+        
+        return ballparks.stream().map(this::convertToDTO).toList();
+    }
+
     private BallparkDTO convertToDTO(Ballpark ballpark){
         return new BallparkDTO(
             ballpark.getId(),

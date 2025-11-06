@@ -1,5 +1,6 @@
 package psu.basepaths.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -41,6 +42,13 @@ public class GameServiceImpl implements GameService{
             .orElseThrow(() -> new RuntimeException("Game not found"));
 
         return convertToDTO(game);
+    }
+
+    @Override
+    public List<GameDTO> getGameByDateRange(Date start, Date end){
+        List<Game> games = gameRepository.findByDateBetween(start, end);
+
+        return games.stream().map(this::convertToDTO).toList();
     }
 
     private GameDTO convertToDTO(Game game){
