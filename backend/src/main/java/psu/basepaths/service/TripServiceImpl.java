@@ -1,16 +1,16 @@
 package psu.basepaths.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.lang.Collections;
+import psu.basepaths.model.Ballpark;
 import psu.basepaths.model.Trip;
 import psu.basepaths.model.TripStop;
-import psu.basepaths.model.User;
+import psu.basepaths.model.dto.BallparkDTO;
+import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.model.dto.TripDTO;
 import psu.basepaths.model.dto.TripStopDTO;
 import psu.basepaths.repository.TripRepository;
@@ -18,9 +18,15 @@ import psu.basepaths.repository.TripRepository;
 @Service
 public class TripServiceImpl implements TripService {
     private final TripRepository tripRepository;
+    private final BallparkService ballparkService;
+    private final GameService gameService;
 
-    public TripServiceImpl(TripRepository tripRepository){
+    public TripServiceImpl(TripRepository tripRepository,
+                           BallparkService ballparkService,
+                           GameService gameService){
         this.tripRepository = tripRepository;
+        this.ballparkService = ballparkService;
+        this.gameService = gameService;
     }
 
     @Override
@@ -91,7 +97,8 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public TripDTO generateTrip(TripDTO trip){
-        //NOT IMPLEMENTED
+        List<BallparkDTO> ballparks = ballparkService.getAllBallparks();
+        List<GameDTO> gamesByDates = gameService.getGameByDateRange(trip.startDate(), trip.endDate());
         return null;
     }
 

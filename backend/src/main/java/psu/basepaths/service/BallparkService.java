@@ -7,4 +7,5 @@ import psu.basepaths.model.dto.BallparkDTO;
 public interface BallparkService {
     public int loadBallparks(List<BallparkDTO> ballparks);
     public BallparkDTO getBallparkById(int ballparkId);
+    public List<BallparkDTO> getAllBallparks();
 }
