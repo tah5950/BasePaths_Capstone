@@ -3,7 +3,7 @@ package psu.basepaths.utilities.graphObjects;
 import java.util.Date;
 import java.util.Objects;
 
-public class Node {
+public class Node{
     public String gameId;
     public Date date;
     public double latitude;
@@ -34,5 +34,10 @@ public class Node {
     @Override
     public int hashCode() {
         return Objects.hash(gameId);
+    }
+
+    @Override
+    public String toString() {
+        return gameId;
     }
 }

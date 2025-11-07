@@ -2,7 +2,9 @@ package psu.basepaths.utilities.graphObjects;
 
 import java.util.concurrent.TimeUnit;
 
-public class Edge {
+import psu.basepaths.utilities.TripUtilities;
+
+public class Edge implements Comparable<Edge>{
     public Node source;
     public Node destination;
     public double travelHours;
@@ -14,7 +16,11 @@ public class Edge {
     }
 
     public int daysBetween(){
-        long diffInMillis = destination.date.getTime() - source.date.getTime();
-        return (int) TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+        return TripUtilities.getDaysBetween(source.date, destination.date);
+    }
+
+    @Override
+    public int compareTo(Edge edge) {
+        return this.destination.date.compareTo(edge.destination.date);
     }
 }

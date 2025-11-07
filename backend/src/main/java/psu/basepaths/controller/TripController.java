@@ -63,6 +63,12 @@ public class TripController {
         return ResponseEntity.ok(created);
     }
 
+    @PutMapping("/generateTrip")
+    public ResponseEntity<?> generateTrip(@RequestBody TripDTO tripDTO, Authentication auth) {
+        TripDTO generated = tripService.generateTrip(tripDTO);
+        return ResponseEntity.ok(generated);
+    }
+
     @GetMapping("/{tripid}")
     public ResponseEntity<?> getTripById(@PathVariable Long tripid, Authentication auth) {
         try{

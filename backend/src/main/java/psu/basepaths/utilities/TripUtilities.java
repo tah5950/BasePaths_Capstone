@@ -1,9 +1,14 @@
 package psu.basepaths.utilities;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import psu.basepaths.model.TripStop;
 import psu.basepaths.model.dto.BallparkDTO;
 import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.model.dto.TripDTO;
@@ -22,7 +27,8 @@ public class TripUtilities {
         Map<Integer, Map<Integer, Double>> ballparkDist = ballparkDistanceMap(ballparks);
         Graph graph = buildGraph(games, ballparkDist, trip.maxHoursPerDay());
         addStartandEndEdges(graph, trip, games, ballparkDist);
-        return null;
+        graph.sortEdgesByEndDate();
+        return graph.getBestTrip(trip);
     }
     
     private Graph buildGraph(List<GameDTO> games, Map<Integer, Map<Integer, Double>> ballparkDistances, int maxTravelHoursPerDay) {
@@ -57,6 +63,8 @@ public class TripUtilities {
 
     private void addStartandEndEdges(Graph graph, TripDTO trip, List<GameDTO> games, Map<Integer, Map<Integer, Double>> ballparkDistances) {
         Node startNode = new Node("-1", trip.startDate(), trip.startLatitude(), trip.startLongitude(), null);
+        graph.setStartNode(startNode);
+        
         Node endNode = new Node("-2", trip.endDate(), trip.endLatitude(), trip.endLongitude(), null);
 
         for (GameDTO game : games) {
@@ -89,13 +97,16 @@ public class TripUtilities {
         for(int i = 0; i < ballparks.size(); i++) {
             BallparkDTO park1 = ballparks.get(i);
 
-            for(int j = i+1; j < ballparks.size(); j++){
+            for(int j = i; j < ballparks.size(); j++){
                 BallparkDTO park2 = ballparks.get(j);
 
                 double distance = calculateDistance(park1.lat(), park1.lon(), park2.lat(), park2.lon());
 
-                ballparkDistances.putIfAbsent(park1.ballparkId(), new HashMap<>()).put(park2.ballparkId(), distance);
-                ballparkDistances.putIfAbsent(park2.ballparkId(), new HashMap<>()).put(park1.ballparkId(), distance);
+                ballparkDistances.putIfAbsent(park1.ballparkId(), new HashMap<>());
+                ballparkDistances.get(park1.ballparkId()).put(park2.ballparkId(), distance);
+
+                ballparkDistances.putIfAbsent(park2.ballparkId(), new HashMap<>());
+                ballparkDistances.get(park2.ballparkId()).put(park1.ballparkId(), distance);;
             }
         }
 
@@ -125,8 +136,7 @@ public class TripUtilities {
         }
     }
 
-    private TripStopDTO nodeToTripStop(Node node) {
-
+    public static TripStopDTO nodeToTripStop(Node node) {
         return new TripStopDTO(
             null,
             node.date, 
@@ -134,5 +144,14 @@ public class TripUtilities {
             node.ballparkId, 
             node.gameId
         );
+    }
+
+    public static int getDaysBetween(Date formerDate, Date laterDate){
+        ZoneId zone = ZoneId.of("UTC");
+        
+        LocalDate former = formerDate.toInstant().atZone(zone).toLocalDate();
+        LocalDate later = laterDate.toInstant().atZone(zone).toLocalDate();
+
+        return (int) ChronoUnit.DAYS.between(former, later);
     }
 }
