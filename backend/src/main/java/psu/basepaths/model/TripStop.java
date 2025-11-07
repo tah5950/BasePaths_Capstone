@@ -27,7 +27,7 @@ public class TripStop {
     private String location;
 
     @Column(name = "ballpark_id")
-    private int ballparkId;
+    private Integer ballparkId;
 
     @Column(name = "game_id")
     private String gameId;
@@ -46,8 +46,8 @@ public class TripStop {
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
 
-    public int getBallparkId() { return ballparkId; }
-    public void setBallparkId(int ballparkId) {this.ballparkId = ballparkId; }
+    public Integer getBallparkId() { return ballparkId; }
+    public void setBallparkId(Integer ballparkId) {this.ballparkId = ballparkId; }
 
     public String getGameId() { return gameId; }
     public void setGameId(String gameId) { this.gameId = gameId; }

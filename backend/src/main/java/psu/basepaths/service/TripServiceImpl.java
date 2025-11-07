@@ -14,6 +14,7 @@ import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.model.dto.TripDTO;
 import psu.basepaths.model.dto.TripStopDTO;
 import psu.basepaths.repository.TripRepository;
+import psu.basepaths.utilities.TripUtilities;
 
 @Service
 public class TripServiceImpl implements TripService {
@@ -97,9 +98,16 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public TripDTO generateTrip(TripDTO trip){
+        TripUtilities tripUtils = new TripUtilities();
+
         List<BallparkDTO> ballparks = ballparkService.getAllBallparks();
         List<GameDTO> gamesByDates = gameService.getGameByDateRange(trip.startDate(), trip.endDate());
-        return null;
+
+        TripDTO generatedTrip = tripUtils.generateTrip(trip, ballparks, gamesByDates);
+
+        updateTrip(generatedTrip);
+
+        return generatedTrip;
     }
 
     private void validateTrip(TripDTO tripDTO){
