@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import psu.basepaths.model.TripStop;
 import psu.basepaths.model.dto.BallparkDTO;
 import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.model.dto.TripDTO;
@@ -22,7 +23,7 @@ public class TripUtilities {
         Map<Integer, Map<Integer, Double>> ballparkDist = ballparkDistanceMap(ballparks);
         Graph graph = buildGraph(games, ballparkDist, trip.maxHoursPerDay());
         addStartandEndEdges(graph, trip, games, ballparkDist);
-        return null;
+        return graph.getBestTrip(trip);
     }
     
     private Graph buildGraph(List<GameDTO> games, Map<Integer, Map<Integer, Double>> ballparkDistances, int maxTravelHoursPerDay) {
@@ -57,6 +58,8 @@ public class TripUtilities {
 
     private void addStartandEndEdges(Graph graph, TripDTO trip, List<GameDTO> games, Map<Integer, Map<Integer, Double>> ballparkDistances) {
         Node startNode = new Node("-1", trip.startDate(), trip.startLatitude(), trip.startLongitude(), null);
+        graph.setStartNode(startNode);
+        
         Node endNode = new Node("-2", trip.endDate(), trip.endLatitude(), trip.endLongitude(), null);
 
         for (GameDTO game : games) {
@@ -125,8 +128,7 @@ public class TripUtilities {
         }
     }
 
-    private TripStopDTO nodeToTripStop(Node node) {
-
+    public static TripStopDTO nodeToTripStop(Node node) {
         return new TripStopDTO(
             null,
             node.date, 
