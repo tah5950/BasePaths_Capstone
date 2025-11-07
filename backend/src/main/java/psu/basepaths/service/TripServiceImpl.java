@@ -98,6 +98,8 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public TripDTO generateTrip(TripDTO trip){
+        validateGeneratingTrip(trip);
+
         TripUtilities tripUtils = new TripUtilities();
 
         List<BallparkDTO> ballparks = ballparkService.getAllBallparks();
@@ -122,6 +124,27 @@ public class TripServiceImpl implements TripService {
         }
         if(tripDTO.startDate().after(tripDTO.endDate())){
             throw new IllegalArgumentException("Start Date must be before End Date");
+        }
+        if(TripUtilities.getDaysBetween(tripDTO.startDate(), tripDTO.endDate()) > 14){
+            throw new IllegalArgumentException("Only trips of 2 weeks or less are supported currently");
+        }
+    }
+
+    private void validateGeneratingTrip(TripDTO tripDTO){
+        if(tripDTO.startLatitude() == null || tripDTO.startLatitude() > 90 || tripDTO.startLatitude() < -90 ){
+            throw new IllegalArgumentException("Invalid Start Latitude");
+        }
+        if(tripDTO.startLongitude() == null || tripDTO.startLongitude() > 180 || tripDTO.startLongitude() < -180 ) {
+            throw new IllegalArgumentException("Invalid Start Longitude");
+        }
+        if(tripDTO.endLatitude() == null || tripDTO.endLatitude() > 90 || tripDTO.endLatitude() < -90 ){
+            throw new IllegalArgumentException("Invalid End Latitude");
+        }
+        if(tripDTO.endLongitude() == null || tripDTO.endLongitude() > 180 || tripDTO.endLongitude() < -180 ) {
+            throw new IllegalArgumentException("Invalid End Longitude");
+        }
+        if(tripDTO.maxHoursPerDay() == null) {
+            throw new IllegalArgumentException("Max Hours Per Day must not be empty");
         }
     }
     

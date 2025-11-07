@@ -65,8 +65,30 @@ public class TripController {
 
     @PutMapping("/generateTrip")
     public ResponseEntity<?> generateTrip(@RequestBody TripDTO tripDTO, Authentication auth) {
-        TripDTO generated = tripService.generateTrip(tripDTO);
-        return ResponseEntity.ok(generated);
+        try{
+            User user = (User) auth.getPrincipal();
+            TripDTO tripWithUser = new TripDTO(
+                    tripDTO.tripId(), 
+                    tripDTO.name(),
+                    tripDTO.startDate(),
+                    tripDTO.endDate(),
+                    tripDTO.startLatitude(),
+                    tripDTO.startLongitude(),
+                    tripDTO.endLatitude(),
+                    tripDTO.endLongitude(),
+                    false,
+                    tripDTO.maxHoursPerDay(),
+                    user.getId(),
+                    tripDTO.tripStops()
+            );
+            TripDTO generated = tripService.generateTrip(tripWithUser);
+            return ResponseEntity.ok(generated);
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("error", e.getMessage()));
+        }
     }
 
     @GetMapping("/{tripid}")

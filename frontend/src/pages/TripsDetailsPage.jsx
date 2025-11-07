@@ -4,7 +4,7 @@ import { Container, Card, CardContent, Typography, Box, Button, Alert,
     TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import { MaterialReactTable } from "material-react-table";
 import { MuiNavbar } from "../components/MuiNavbar";
-import CreateTripForm from "../components/CreateTripForm";
+import GenerateTripForm from "../components/GenerateTripForm";
 import { getToken } from "../utils/authUtils";
 import { API_BASE_URL } from "../config";
 
@@ -14,6 +14,15 @@ function TripsDetailsPage() {
     const [trip, setTrip] = useState(state?.trip || null);
     const [stops, setStops] = useState([]);
     const [error, setError] = useState("");
+
+    const [openForm, setOpenForm] = useState(false);
+    
+    const handleOpen = () => setOpenForm(true);
+    const handleClose = () => setOpenForm(false);
+
+    const handleTripGenerated = (newTrip) => {
+        setTrip(newTrip);
+    }
     
     useEffect(() => {
         if (!trip) {
@@ -125,10 +134,17 @@ function TripsDetailsPage() {
                     <Typography variant="h4" gutterBottom>
                         {trip.name}
                     </Typography>
-                    <Button variant="contained" color="primary" sx={{ ml: 1 }}>
+                    <Button onClick={handleOpen} variant="contained" color="primary" sx={{ ml: 1 }}>
                         Generate Trip
                     </Button>
                 </Box>
+
+                <GenerateTripForm
+                    open={openForm}
+                    onClose={handleClose}
+                    onTripGenerated={handleTripGenerated}
+                    trip={trip}
+                />
 
                 <Box sx={{ px: 2 }}>
                     <Card sx={{ mb: 4 }}>
