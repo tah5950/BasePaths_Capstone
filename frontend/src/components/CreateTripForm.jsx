@@ -81,13 +81,13 @@ const CreateTripForm = ({ open, onClose, onTripCreated })  => {
               label="Start Date"
               value={formData.startDate}
               onChange={(newValue) => handleChange("startDate", newValue)}
-              slotProps={{ tectField: { fullWidth: true, required: true } }}
+              slotProps={{ textField: { fullWidth: true, required: true } }}
             />
             <DatePicker
               label="End Date"
               value={formData.endDate}
               onChange={(newValue) => handleChange("endDate", newValue)}
-              slotProps={{ tectField: { fullWidth: true, required: true } }}
+              slotProps={{ textField: { fullWidth: true, required: true } }}
             /> 
           </LocalizationProvider>
           {message && (
