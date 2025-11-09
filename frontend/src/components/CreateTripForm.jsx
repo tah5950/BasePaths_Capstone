@@ -72,6 +72,7 @@ const CreateTripForm = ({ open, onClose, onTripCreated })  => {
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 1 }}>
           <TextField
             label="Trip Name"
+            name="tripName"
             value={formData.name}
             onChange={(e) => handleChange("name", e.target.value)}
             required
@@ -81,13 +82,14 @@ const CreateTripForm = ({ open, onClose, onTripCreated })  => {
               label="Start Date"
               value={formData.startDate}
               onChange={(newValue) => handleChange("startDate", newValue)}
-              slotProps={{ tectField: { fullWidth: true, required: true } }}
+              slotProps={{ textField: { fullWidth: true, required: true, name: "startDate" } }}
             />
             <DatePicker
               label="End Date"
+              name="endDate"
               value={formData.endDate}
               onChange={(newValue) => handleChange("endDate", newValue)}
-              slotProps={{ tectField: { fullWidth: true, required: true } }}
+              slotProps={{ textField: { fullWidth: true, required: true, name: "endDate" } }}
             /> 
           </LocalizationProvider>
           {message && (

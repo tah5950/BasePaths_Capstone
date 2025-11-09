@@ -3,6 +3,7 @@ import { render, screen, fireEvent, waitFor} from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
+import TripsPage from "../pages/TripsPage";
 
 // Mock navigate to test routing behavior
 const mockNavigate = jest.fn();
@@ -23,7 +24,7 @@ afterEach(() => {
 });
 
 describe("Navbar Unit tests", () => {
-    test("FUT9 - Login Valid User", async () => {
+    test("FUT10 - Logout routes to Login", async () => {
 
         localStorage.setItem("token", "test-token");
 
@@ -42,5 +43,25 @@ describe("Navbar Unit tests", () => {
             expect(mockNavigate).toHaveBeenCalledWith("/login");
         });
         expect(localStorage.getItem("token")).toBeNull();
+    });
+
+    test("FUT16 - Trips routes to TripsPage", async () => {
+
+        localStorage.setItem("token", "test-token");
+
+        render(
+            <MemoryRouter initialEntries={["/home"]}>
+                <Routes>
+                    <Route path="/trips" element={<TripsPage />}/>
+                    <Route path="/home" element={<Home />}/>
+                </Routes>
+            </MemoryRouter>
+        );
+
+        fireEvent.click(screen.getByRole("button", {name: /Trips/i}));
+
+        await waitFor(() => {
+            expect(mockNavigate).toHaveBeenCalledWith("/trips");
+        });
     });
 });
