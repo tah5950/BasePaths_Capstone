@@ -174,28 +174,4 @@ describe("Create Trip Frontend Unit Tests", () => {
 
         expect(screen.queryByRole("dialog")).toBeInTheDocument();
     });
-
-    // test("FUT9 - Login API error", async () => {
-    //     global.fetch.mockRejectedValueOnce(new Error("Failed to fetch"));
-
-    //     render(
-    //         <MemoryRouter>
-    //             <Login />
-    //         </MemoryRouter>
-    //     );
-
-    //     fireEvent.change(screen.getByLabelText(/Username/i), {
-    //         target: { value: "validUser" },
-    //     });
-
-    //     fireEvent.change(screen.getByLabelText(/Password/i), {
-    //         target: { value: "validPass1!" },
-    //     });
-
-    //     fireEvent.click(screen.getByRole("button", {name: /Login/i}));
-
-    //     await waitFor(() => {
-    //         expect(screen.getByText(/Error: Failed to fetch/i)).toBeInTheDocument();
-    //     });
-    // });
 });
