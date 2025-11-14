@@ -48,6 +48,18 @@ CREATE TABLE trip (
         ON DELETE CASCADE
 );
 
+INSERT INTO trip (
+  tripid, name, start_date, end_date,
+  start_latitude, start_longitude,
+  end_latitude, end_longitude,
+  is_generated, max_hours_per_day, userid
+)
+VALUES (
+  1, 'Cypress Test Trip', '2026-03-25', '2026-03-29',
+  NULL, NULL, NULL, NULL,
+  FALSE, NULL, 20
+);
+
 CREATE TABLE trip_stop (
     tripstopid SERIAL PRIMARY KEY,
     date DATE NOT NULL,
