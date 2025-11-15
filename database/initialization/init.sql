@@ -4,6 +4,9 @@ CREATE TABLE users (
     password_hash VARCHAR(255) NOT NULL
 );
 
+INSERT INTO users (userid, username, password_hash)
+VALUES (1, 'cyTestUser', '$2a$10$onsIjFTbV/MSGrIfF9cgbe7Y2hOR5nmTxqAdcTnOOrS853HwZwruG');
+
 CREATE TABLE ballpark (
     ballpark_id INTEGER PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -46,6 +49,18 @@ CREATE TABLE trip (
         FOREIGN KEY (userid)
         REFERENCES users (userid)
         ON DELETE CASCADE
+);
+
+INSERT INTO trip (
+  tripid, name, start_date, end_date,
+  start_latitude, start_longitude,
+  end_latitude, end_longitude,
+  is_generated, max_hours_per_day, userid
+)
+VALUES (
+  1, 'Cypress Test Trip', '2026-03-25', '2026-03-29',
+  NULL, NULL, NULL, NULL,
+  FALSE, NULL, 1
 );
 
 CREATE TABLE trip_stop (

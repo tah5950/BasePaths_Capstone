@@ -33,7 +33,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173")); // Enable CORS for frontend
+        config.addAllowedOriginPattern("http://localhost:*");
+        config.addAllowedOriginPattern("http://127.0.0.1:*"); // Enable CORS for frontend and Cypress
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Allow REST operations
         config.setAllowedHeaders(List.of("Authorization", "Content-Type")); // Allow standard headers
         config.setAllowCredentials(true); // Allow cookies for sessions

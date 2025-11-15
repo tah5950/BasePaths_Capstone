@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -316,5 +317,73 @@ public class TripServiceTest {
         assertEquals(result.endDate(), TEST_DATE_END_VALID);
         assertNotNull(result.tripStops());
         assertEquals(0, result.tripStops().size());
+    }
+
+    // BUT25 – Get User trips returns valid DTO Trips
+    @Test
+    public void getUserTrips_validTrips(){
+        List<Trip> validList = List.of(VALID_TRIP_1, VALID_TRIP_2_NO_STOPS);
+
+        when(tripRepository.findByUserId(1L)).thenReturn(Optional.of(validList));
+
+        List<TripDTO> result = tripService.getUserTrips(1L);
+
+        assertNotNull(result);
+
+        assertEquals(result.get(0).name(), "Test Trip 1");
+        assertEquals(result.get(0).startDate(), TEST_DATE_START);
+        assertEquals(result.get(0).endDate(), TEST_DATE_END_VALID);
+        assertNotNull(result.get(0).tripStops());
+        assertEquals(2, result.get(0).tripStops().size());
+        assertEquals("San Diego", result.get(0).tripStops().get(0).location());
+        assertEquals("game2", result.get(0).tripStops().get(1).gameId());
+
+        assertEquals(result.get(1).name(), "Test Trip 1");
+        assertEquals(result.get(1).startDate(), TEST_DATE_START);
+        assertEquals(result.get(1).endDate(), TEST_DATE_END_VALID);
+        assertNotNull(result.get(1).tripStops());
+        assertEquals(0, result.get(1).tripStops().size());
+    }
+
+    // BUT26 – Get User trips when no trips are saved
+    @Test
+    public void getUserTrips_NoSavedTrips(){
+        when(tripRepository.findByUserId(1L)).thenReturn(Optional.empty());
+
+        List<TripDTO> result = tripService.getUserTrips(1L);
+
+        assertNotNull(result);
+        assertEquals(result.size(), 0);
+    }
+
+    // BUT27 – Get trip by id returns valid DTO Trip
+    @Test
+    public void getTripById_validTrip(){
+        when(tripRepository.findByIdAndUserId(1L, 1L)).thenReturn(Optional.of(VALID_TRIP_1));
+
+        TripDTO result = tripService.getTripById(1L, 1L);
+
+        assertNotNull(result);
+        assertEquals(result.name(), "Test Trip 1");
+        assertEquals(result.startDate(), TEST_DATE_START);
+        assertEquals(result.endDate(), TEST_DATE_END_VALID);
+        assertNotNull(result.tripStops());
+        assertEquals(2, result.tripStops().size());
+        assertEquals("San Diego", result.tripStops().get(0).location());
+        assertEquals("game2", result.tripStops().get(1).gameId());
+        assertEquals(result.tripId(), 1L);
+        assertEquals(result.userId(), 1L);
+    }
+
+    // BUT28 – Get trip by id throws exception when repository comes back empty
+    @Test
+    public void getTripById_tripNotFound(){
+        when(tripRepository.findByIdAndUserId(1L, 1L)).thenReturn(Optional.empty());
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            tripService.getTripById(1L, 1L);
+        });
+
+        assertTrue(thrown.getMessage().contains("Trip not found or not accessible by user: 1"));
     }
 }

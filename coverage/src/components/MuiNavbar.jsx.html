@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">84.61% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>11/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>7/9</span>
             </div>
         
             
@@ -92,19 +92,36 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -116,12 +133,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span></td><td class="text"><pre class="prettyprint lang-js">import { AppBar, Button, Toolbar, Typography, Stack } from "@mui/material";
+<span class="cline-any cline-yes">9x</span></td><td class="text"><pre class="prettyprint lang-js">import { AppBar, Button, Toolbar, Typography, Stack, Box } from "@mui/material";
 import MyLogo from "../assets/Logo.png";
 import { clearToken } from "../utils/authUtils";
 import { useNavigate } from "react-router-dom";
@@ -133,15 +145,21 @@ export const MuiNavbar = () =&gt; {
         clearToken();
         navigate("/login");
     };
+    
     return(
         &lt;AppBar position='static'&gt;
             &lt;Toolbar&gt;
-                &lt;Button edge='start' aria-label='logo'&gt;
-                    &lt;img src={MyLogo} style={{ height: 50, width: "auto "}}/&gt;
-                &lt;/Button&gt;
-                &lt;Typography variant="h6" component='div' sx={{ flexGrow: 1 }}&gt;
-                    Basepaths
-                &lt;/Typography&gt;
+                &lt;Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}&gt;
+                    &lt;Button edge='start' aria-label='logo' onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >n</span>avigate("/home")}&gt;</span>
+                        &lt;img src={MyLogo} style={{ height: 50, width: "auto "}}/&gt;
+                    &lt;/Button&gt;
+                    &lt;Typography variant="h6" component='div' sx={{ mr: 2, cursor: "default" }}&gt;
+                        Basepaths
+                    &lt;/Typography&gt;
+                    &lt;Button color='inherit' onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >n</span>avigate("/trips")}&gt;</span>
+                        Trips
+                    &lt;/Button&gt;
+                &lt;/Box&gt;
                 &lt;Stack direction='row' spacing={2}&gt;
                     &lt;Button color='inherit' onClick={handleLogout}&gt;
                         Logout
@@ -157,7 +175,7 @@ export const MuiNavbar = () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-28T15:02:27.132Z
+                at 2025-11-09T21:13:47.380Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
