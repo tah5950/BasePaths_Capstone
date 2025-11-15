@@ -151,6 +151,9 @@ function TripsDetailsPage() {
                     <Button onClick={handleOpen} variant="contained" color="primary" sx={{ ml: 1 }}>
                         Generate Trip
                     </Button>
+                    <Button variant="contained" color="secondary" sx={{ ml: 1 }}>
+                        Edit Trip
+                    </Button>
                     <Button onClick={() => setDeleteOpen(true)} variant="contained" color="error" sx={{ ml: 1 }}>
                         Delete Trip
                     </Button>
