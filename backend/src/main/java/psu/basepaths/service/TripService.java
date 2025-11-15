@@ -10,4 +10,5 @@ public interface TripService {
     public TripDTO updateTrip(TripDTO tripDTO);
     public TripDTO getTripById(Long tripid, Long userid);
     public TripDTO generateTrip(TripDTO trip);
+    public void deleteTrip(Long tripid, Long userid);
 }

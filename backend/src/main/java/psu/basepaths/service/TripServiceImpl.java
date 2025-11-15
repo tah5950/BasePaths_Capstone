@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.lang.Collections;
-import psu.basepaths.model.Ballpark;
 import psu.basepaths.model.Trip;
 import psu.basepaths.model.TripStop;
 import psu.basepaths.model.dto.BallparkDTO;
@@ -86,6 +85,14 @@ public class TripServiceImpl implements TripService {
 
         Trip updatedTrip = tripRepository.save(existingTrip);
         return convertToDTO(updatedTrip);
+    }
+
+    @Override
+    public void deleteTrip(Long tripid, Long userid){
+        Trip trip = tripRepository.findByIdAndUserId(tripid, userid)
+            .orElseThrow(() -> new RuntimeException("Trip not found or not accessible by user: " + userid));
+
+        tripRepository.delete(trip);
     }
 
     @Override

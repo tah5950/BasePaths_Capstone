@@ -63,6 +63,20 @@ public class TripController {
         return ResponseEntity.ok(created);
     }
 
+    @DeleteMapping("/{tripid}")
+    public ResponseEntity<?> deleteTrip(@PathVariable Long tripid, Authentication auth){
+        try{
+            User user = (User) auth.getPrincipal();
+            tripService.deleteTrip(tripid, user.getId());
+            return ResponseEntity.noContent().build();
+        } 
+        catch(RuntimeException e){
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("error", e.getMessage()));
+        }
+    }
+
     @PutMapping("/generateTrip")
     public ResponseEntity<?> generateTrip(@RequestBody TripDTO tripDTO, Authentication auth) {
         try{
