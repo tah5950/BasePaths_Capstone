@@ -63,7 +63,7 @@ public class TripController {
         return ResponseEntity.ok(created);
     }
 
-    @DeleteMapping("/{tripid}")
+    @DeleteMapping("/delete/{tripid}")
     public ResponseEntity<?> deleteTrip(@PathVariable Long tripid, Authentication auth){
         try{
             User user = (User) auth.getPrincipal();

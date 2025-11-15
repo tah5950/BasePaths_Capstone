@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
-import { Container, Card, CardContent, Typography, Box, Button, Alert, 
-    TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Container, Card, CardContent, Typography, Box, Button, Alert, Dialog,
+  DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { MaterialReactTable } from "material-react-table";
 import { MuiNavbar } from "../components/MuiNavbar";
 import GenerateTripForm from "../components/GenerateTripForm";
@@ -11,17 +11,39 @@ import { API_BASE_URL } from "../config";
 function TripsDetailsPage() {
     const { tripId } = useParams();
     const { state } = useLocation();
+    const navigate = useNavigate();
     const [trip, setTrip] = useState(state?.trip || null);
     const [stops, setStops] = useState([]);
     const [error, setError] = useState("");
 
     const [openForm, setOpenForm] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
     
     const handleOpen = () => setOpenForm(true);
     const handleClose = () => setOpenForm(false);
 
     const handleTripGenerated = (newTrip) => {
         setTrip(newTrip);
+    }
+
+    const handleDeleteTrip = async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/trip/delete/${trip.tripId}`, {
+                method: "DELETE",
+                headers: { Authorization: `Bearer ${getToken()}` },
+            });
+
+            if (!response.ok) {
+                const e = await response.json();
+                throw new Error(e.error || "Failed to delete trip");
+            }
+
+            navigate("/trips");
+
+        } catch (e) {
+            setError("Delete Failed: " + e.message);
+            setDeleteOpen(false);
+        }
     }
     
     useEffect(() => {
@@ -115,14 +137,6 @@ function TripsDetailsPage() {
             day: "numeric",
             year: "numeric",
     }): "N/A";
-    
-    if(error) {
-        return (
-            <Box maxWidth="600px" mx="auto" mt={4}>
-                <Alert severity="error">{error}</Alert>
-            </Box>
-        );
-    }
 
     if(!trip) return null;
 
@@ -137,7 +151,16 @@ function TripsDetailsPage() {
                     <Button onClick={handleOpen} variant="contained" color="primary" sx={{ ml: 1 }}>
                         Generate Trip
                     </Button>
+                    <Button onClick={() => setDeleteOpen(true)} variant="contained" color="error" sx={{ ml: 1 }}>
+                        Delete Trip
+                    </Button>
                 </Box>
+
+                {error && (
+                    <Box sx={{ maxWidth: "600px", mb: 2 }}>
+                        <Alert severity="error">{error}</Alert>
+                    </Box>
+                )}
 
                 <GenerateTripForm
                     open={openForm}
@@ -178,6 +201,22 @@ function TripsDetailsPage() {
                         </Typography>
                     )}
                 </Box>
+                <Dialog open={deleteOpen} onClose={() => setDeleteOpen(false)}>
+                    <DialogTitle>Delete Trip</DialogTitle>
+
+                    <DialogContent>
+                        <Typography>
+                            Are you sure you want to delete this trip? This action cannot be undone.
+                        </Typography>
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button onClick={() => setDeleteOpen(false)}>Cancel</Button>
+                        <Button color="error" onClick={handleDeleteTrip}>
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Container>
         </>
     );
