@@ -50,25 +50,29 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public TripDTO updateTrip(TripDTO tripDTO) {
+    public TripDTO updateTrip(TripDTO tripDTO, boolean generateUpdate) {
+        validateTrip(tripDTO);
+
         Trip existingTrip = tripRepository.findById(tripDTO.tripId())
             .orElseThrow(() -> new RuntimeException("Trip not found with id " + tripDTO.tripId()));
 
         existingTrip.setName(tripDTO.name());
         existingTrip.setStartDate(tripDTO.startDate());
         existingTrip.setEndDate(tripDTO.endDate());
-        existingTrip.setStartLatitude(tripDTO.startLatitude());
-        existingTrip.setStartLongitude(tripDTO.startLongitude());
-        existingTrip.setEndLatitude(tripDTO.endLatitude());
-        existingTrip.setEndLongitude(tripDTO.endLongitude());
-        existingTrip.setIsGenerated(tripDTO.isGenerated());
         existingTrip.setUserId(tripDTO.userId());
-        existingTrip.setMaxHoursPerDay(tripDTO.maxHoursPerDay());
 
         //Update trip stops
         existingTrip.getTripStops().clear();
 
-        if(tripDTO.tripStops() != null) {
+        if(generateUpdate){
+            existingTrip.setStartLatitude(tripDTO.startLatitude());
+            existingTrip.setStartLongitude(tripDTO.startLongitude());
+            existingTrip.setEndLatitude(tripDTO.endLatitude());
+            existingTrip.setEndLongitude(tripDTO.endLongitude());
+            existingTrip.setIsGenerated(tripDTO.isGenerated());
+            existingTrip.setMaxHoursPerDay(tripDTO.maxHoursPerDay());
+
+            if(tripDTO.tripStops() != null) {
             List<TripStop> newStops = tripDTO.tripStops().stream()
                 .map(stopDto -> {
                     TripStop stop = new TripStop();
@@ -80,7 +84,15 @@ public class TripServiceImpl implements TripService {
                     stop.setTrip(existingTrip);
                     return stop;
                 }).collect(Collectors.toList());
-            existingTrip.getTripStops().addAll(newStops);
+                existingTrip.getTripStops().addAll(newStops);
+            }
+        } else {
+            existingTrip.setStartLatitude(null);
+            existingTrip.setStartLongitude(null);
+            existingTrip.setEndLatitude(null);
+            existingTrip.setEndLongitude(null);
+            existingTrip.setIsGenerated(false);
+            existingTrip.setMaxHoursPerDay(null);
         }
 
         Trip updatedTrip = tripRepository.save(existingTrip);
@@ -114,7 +126,7 @@ public class TripServiceImpl implements TripService {
 
         TripDTO generatedTrip = tripUtils.generateTrip(trip, ballparks, gamesByDates);
 
-        updateTrip(generatedTrip);
+        updateTrip(generatedTrip, true);
 
         return generatedTrip;
     }

@@ -59,8 +59,8 @@ public class TripController {
 
     @PutMapping("/updateTrip")
     public ResponseEntity<?> updateTrip(@RequestBody TripDTO tripDTO, Authentication auth) {
-        TripDTO created = tripService.createTrip(tripDTO);
-        return ResponseEntity.ok(created);
+        TripDTO updated = tripService.updateTrip(tripDTO, false);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/delete/{tripid}")
