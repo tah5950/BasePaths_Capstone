@@ -4,8 +4,8 @@ CREATE TABLE users (
     password_hash VARCHAR(255) NOT NULL
 );
 
-INSERT INTO users (userid, username, password_hash)
-VALUES (1, 'cyTestUser', '$2a$10$onsIjFTbV/MSGrIfF9cgbe7Y2hOR5nmTxqAdcTnOOrS853HwZwruG');
+INSERT INTO users (username, password_hash)
+VALUES ('cyTestUser', '$2a$10$onsIjFTbV/MSGrIfF9cgbe7Y2hOR5nmTxqAdcTnOOrS853HwZwruG');
 
 CREATE TABLE ballpark (
     ballpark_id INTEGER PRIMARY KEY,
@@ -52,13 +52,13 @@ CREATE TABLE trip (
 );
 
 INSERT INTO trip (
-  tripid, name, start_date, end_date,
+  name, start_date, end_date,
   start_latitude, start_longitude,
   end_latitude, end_longitude,
   is_generated, max_hours_per_day, userid
 )
 VALUES (
-  1, 'Cypress Test Trip', '2026-03-25', '2026-03-29',
+  'Cypress Test Trip', '2026-03-25', '2026-03-29',
   NULL, NULL, NULL, NULL,
   FALSE, NULL, 1
 );
