@@ -15,7 +15,6 @@ describe("User Registration Systems Tests", () => {
     });
 
     it("SYS2 - Register Duplicate User", () => {
-        cy.registerTestUser();
         cy.visit("/createaccount");
 
         cy.get('input[name="username"]').type("cyTestUser"); // Will be seeded in database
