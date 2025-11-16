@@ -1,5 +1,7 @@
 package psu.basepaths.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +58,15 @@ public class TripServiceImpl implements TripService {
         Trip existingTrip = tripRepository.findById(tripDTO.tripId())
             .orElseThrow(() -> new RuntimeException("Trip not found with id " + tripDTO.tripId()));
 
+        ZoneId zone = ZoneId.of("UTC");
+        LocalDate startNew = tripDTO.startDate().toInstant().atZone(zone).toLocalDate();
+        LocalDate endNew = tripDTO.endDate().toInstant().atZone(zone).toLocalDate();
+        LocalDate startExist = existingTrip.getStartDate().toInstant().atZone(zone).toLocalDate();
+        LocalDate endexist = existingTrip.getEndDate().toInstant().atZone(zone).toLocalDate();
+
+        boolean notUpdatedDates = (startExist.equals(startNew) &&
+            endexist.equals(endNew));
+
         existingTrip.setName(tripDTO.name());
         existingTrip.setStartDate(tripDTO.startDate());
         existingTrip.setEndDate(tripDTO.endDate());
@@ -64,7 +75,7 @@ public class TripServiceImpl implements TripService {
         //Update trip stops
         existingTrip.getTripStops().clear();
 
-        if(generateUpdate){
+        if(generateUpdate || notUpdatedDates){
             existingTrip.setStartLatitude(tripDTO.startLatitude());
             existingTrip.setStartLongitude(tripDTO.startLongitude());
             existingTrip.setEndLatitude(tripDTO.endLatitude());
