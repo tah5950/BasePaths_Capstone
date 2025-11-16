@@ -5,6 +5,7 @@ import { Container, Card, CardContent, Typography, Box, Button, Alert, Dialog,
 import { MaterialReactTable } from "material-react-table";
 import { MuiNavbar } from "../components/MuiNavbar";
 import GenerateTripForm from "../components/GenerateTripForm";
+import UpdateTripForm from "../components/UpdateTripForm";
 import { getToken } from "../utils/authUtils";
 import { API_BASE_URL } from "../config";
 
@@ -16,13 +17,21 @@ function TripsDetailsPage() {
     const [stops, setStops] = useState([]);
     const [error, setError] = useState("");
 
-    const [openForm, setOpenForm] = useState(false);
+    const [openGenerateForm, setGenerateOpenForm] = useState(false);
+    const [openUpdateForm, setUpdateOpenForm] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
     
-    const handleOpen = () => setOpenForm(true);
-    const handleClose = () => setOpenForm(false);
+    const handleGenerateOpen = () => setGenerateOpenForm(true);
+    const handleGenerateClose = () => setGenerateOpenForm(false);
+
+    const handleUpdateOpen = () => setUpdateOpenForm(true);
+    const handleUpdateClose = () => setUpdateOpenForm(false);
 
     const handleTripGenerated = (newTrip) => {
+        setTrip(newTrip);
+    }
+
+    const handleTripUpdated = (newTrip) => {
         setTrip(newTrip);
     }
 
@@ -130,13 +139,15 @@ function TripsDetailsPage() {
         { accessorKey: "gameDetails", header: "Game" },
     ]
 
-    const formatDate = (date) =>
-        date ? new Date(date.split("T")[0] + "T00:00:00").toLocaleDateString("en-US", {
+    const formatDate = (dateString) => {
+        const date = new Date(dateString.split("T")[0]  + "T00:00:00");
+        return date.toLocaleDateString("en-US", {
             weekday: "short",
             month: "short",
             day: "numeric",
             year: "numeric",
-    }): "N/A";
+        });
+    }
 
     if(!trip) return null;
 
@@ -148,10 +159,10 @@ function TripsDetailsPage() {
                     <Typography variant="h4" gutterBottom>
                         {trip.name}
                     </Typography>
-                    <Button onClick={handleOpen} variant="contained" color="primary" sx={{ ml: 1 }}>
+                    <Button onClick={handleGenerateOpen} variant="contained" color="primary" sx={{ ml: 1 }}>
                         Generate Trip
                     </Button>
-                    <Button variant="contained" color="secondary" sx={{ ml: 1 }}>
+                    <Button onClick={handleUpdateOpen} variant="contained" color="secondary" sx={{ ml: 1 }}>
                         Edit Trip
                     </Button>
                     <Button onClick={() => setDeleteOpen(true)} variant="contained" color="error" sx={{ ml: 1 }}>
@@ -166,9 +177,16 @@ function TripsDetailsPage() {
                 )}
 
                 <GenerateTripForm
-                    open={openForm}
-                    onClose={handleClose}
+                    open={openGenerateForm}
+                    onClose={handleGenerateClose}
                     onTripGenerated={handleTripGenerated}
+                    trip={trip}
+                />
+
+                <UpdateTripForm
+                    open={openUpdateForm}
+                    onClose={handleUpdateClose}
+                    onTripUpdated={handleTripUpdated}
                     trip={trip}
                 />
 
