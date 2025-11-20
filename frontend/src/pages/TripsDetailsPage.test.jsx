@@ -34,9 +34,9 @@ describe("View Trip Frontend Unit Tests", () => {
 
         render(
             <MemoryRouter initialEntries={["/trip/1"]}>
-            <Routes>
-                <Route path="/trip/:tripId" element={<TripsDetailsPage />} />
-            </Routes>
+                <Routes>
+                    <Route path="/trip/:tripId" element={<TripsDetailsPage />} />
+                </Routes>
             </MemoryRouter>
         );
 
@@ -149,5 +149,28 @@ describe("View Trip Frontend Unit Tests", () => {
         expect(screen.getByText(/End Coordinate:/i)).toBeInTheDocument();
 
         expect(screen.getByText("No trip stops available.")).toBeInTheDocument();
+    });
+
+    test("FUT20 - Open Generate Form", async () => {
+        mockFetchTripDetailsPage();
+        
+        render(
+            <MemoryRouter initialEntries={["/trip/1"]}>
+                <Routes>
+                    <Route path="/trip/:tripId" element={<TripsDetailsPage />} />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        await waitFor(() => {
+            expect(screen.getByText("Test Trip")).toBeInTheDocument();
+            expect(screen.getByText(/Trip Overview/i)).toBeInTheDocument();
+        });
+    
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    
+        fireEvent.click(screen.getByRole("button", {name: /Generate Trip/i}));
+    
+        expect(screen.queryByRole("dialog")).toBeInTheDocument();
     });
 });
