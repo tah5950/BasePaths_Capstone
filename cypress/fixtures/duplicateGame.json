@@ -7,11 +7,11 @@
 		"ballpark_id" : 2395
 	},
 	{
-		"game_id" : "65de8884-7fe4-405a-8562-920456267f96",
-		"home_team" : "Chicago Cubs",
-		"away_team" : "Washington Nationals",
-		"date" : "2026-03-26T07:00:00.000Z",
-		"ballpark_id" : 17
+		"game_id" : "f1651b7f-793d-41c9-b122-24415a3e1ee9",
+		"home_team" : "San Diego Padres",
+		"away_team" : "San Francisco Giants",
+		"date" : "2026-03-30T07:00:00.000Z",
+		"ballpark_id" : 2680
 	},
 	{
 		"game_id" : "07e436a7-6300-4d03-889d-f5b0a33c120b",

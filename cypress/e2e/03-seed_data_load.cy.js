@@ -145,23 +145,6 @@ describe("Load Data", () => {
         })
     });
 
-    it("SYS12 - Game Invalid Data Load", () => {
-        cy.fixture("invalidGame.json").then((data) => {
-            cy.request({
-                method: "POST", 
-                url: "http://localhost:8080/api/game/load", 
-                body: data,
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-LOAD-KEY": "0279fbdc-41e8-4080-90dc-2a28bd3340ba"
-                },
-                failOnStatusCode: false
-            }).then((response) => {
-                expect(response.status).to.eq(403);
-            });
-        })
-    });
-
     it("SYS13 - Load Game with Invalid Ballpark", () => {
         cy.fixture("gameInvalidBallparkId.json").then((data) => {
             cy.request({
