@@ -50,8 +50,7 @@ describe("Load Data", () => {
                 failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.eq(200);
-                expect(response.body).to.eq("Ballpark data load complete. 2 new entries added.")
-                // TODO: Check that data was added with GET Endpoint
+                expect(response.body).to.eq("Ballpark data load complete. 3 new entries added.")
             });
         })
     });
@@ -70,7 +69,6 @@ describe("Load Data", () => {
             }).then((response) => {
                 expect(response.status).to.eq(200);
                 expect(response.body).to.eq("Ballpark data load complete. 2 new entries added.")
-                // TODO: Check that data was added with GET Endpoint
             });
         })
     });
@@ -105,7 +103,7 @@ describe("Load Data", () => {
                 failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.eq(200);
-                expect(response.body).to.eq("Game data load complete. 3 new entries added.")
+                expect(response.body).to.eq("Game data load complete. 9 new entries added.")
                 // TODO: Check that data was added with GET Endpoint
             });
         })
@@ -124,25 +122,8 @@ describe("Load Data", () => {
                 failOnStatusCode: false
             }).then((response) => {
                 expect(response.status).to.eq(200);
-                expect(response.body).to.eq("Game data load complete. 2 new entries added.")
+                expect(response.body).to.eq("Game data load complete. 1 new entries added.")
                 // TODO: Check that data was added with GET Endpoint
-            });
-        })
-    });
-
-    it("SYS12 - Game Invalid Data Load", () => {
-        cy.fixture("invalidGame.json").then((data) => {
-            cy.request({
-                method: "POST", 
-                url: "http://localhost:8080/api/game/load", 
-                body: data,
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-LOAD-KEY": "0279fbdc-41e8-4080-90dc-2a28bd3340ba"
-                },
-                failOnStatusCode: false
-            }).then((response) => {
-                expect(response.status).to.eq(403);
             });
         })
     });

@@ -20,22 +20,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import psu.basepaths.model.Game;
 import psu.basepaths.model.Trip;
 import psu.basepaths.model.TripStop;
+import psu.basepaths.model.dto.BallparkDTO;
+import psu.basepaths.model.dto.GameDTO;
 import psu.basepaths.model.dto.TripDTO;
 import psu.basepaths.model.dto.TripStopDTO;
-import psu.basepaths.repository.BallparkRepository;
-import psu.basepaths.repository.GameRepository;
 import psu.basepaths.repository.TripRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class TripServiceTest {
     @Mock
-    private GameRepository gameRepository;
+    private GameService gameService;
 
     @Mock
-    private BallparkRepository ballparkRepository;
+    private BallparkService ballparkService;
 
     @Mock
     private TripRepository tripRepository;
@@ -47,6 +46,7 @@ public class TripServiceTest {
     private static final double START_LON_VALID = -117.16;
     private static final double END_LAT_VALID = 38.58;
     private static final double END_LON_VALID = -121.49;
+    private static final double START_LAT_INVALID = 100.72;
 
     private static int MAX_HOURS_PER_DAY = 8;
 
@@ -56,14 +56,27 @@ public class TripServiceTest {
 
     private static Trip VALID_TRIP_1;
     private static Trip VALID_TRIP_2_NO_STOPS;
+    private static Trip VALID_TRIP_GEN_INPUT;
+    private static Trip VALID_TRIP_GENERATED;
 
     private static TripStop VALID_TRIP_STOP_1;
     private static TripStop VALID_TRIP_STOP_2;
 
     private static TripDTO VALID_TRIP_DTO_1;
+    private static TripDTO VALID_TRIP_DTO_GEN_INPUT;
+    private static TripDTO VALID_TRIP_DTO_GENERATED;
 
     private static TripStopDTO VALID_TRIP_STOP_DTO_1;
     private static TripStopDTO VALID_TRIP_STOP_DTO_2;
+
+    private static TripStopDTO VALID_TRIP_STOP_DTO_START;
+    private static TripStopDTO VALID_TRIP_STOP_DTO_SD;
+    private static TripStopDTO VALID_TRIP_STOP_DTO_LA;
+    private static TripStopDTO VALID_TRIP_STOP_DTO_SF;
+    private static TripStopDTO VALID_TRIP_STOP_DTO_END;
+
+    private static List<GameDTO> GAMES;
+    private static List<BallparkDTO> BALLPARKS;
 
     @BeforeAll
     public static void setUp() {
@@ -145,6 +158,8 @@ public class TripServiceTest {
         VALID_TRIP_2_NO_STOPS.setEndLongitude(END_LON_VALID);
         VALID_TRIP_2_NO_STOPS.setMaxHoursPerDay(MAX_HOURS_PER_DAY);
         VALID_TRIP_2_NO_STOPS.setUserId(1L);
+
+        initializeGeneratedTestValues();
     }
 
     // BUT19 - Create Trip Valid Input
@@ -386,4 +401,265 @@ public class TripServiceTest {
 
         assertTrue(thrown.getMessage().contains("Trip not found or not accessible by user: 1"));
     }
+
+    // BUT29 - Generate Trip with valid Trip
+    @Test
+    public void generateTrip_validTrip(){
+        when(ballparkService.getAllBallparks()).thenReturn(BALLPARKS);
+        when(gameService.getGameByDateRange(TEST_DATE_START, TEST_DATE_END_VALID)).thenReturn(GAMES);
+        when(tripRepository.findById(VALID_TRIP_DTO_GENERATED.tripId())).thenReturn(Optional.of(VALID_TRIP_GEN_INPUT));
+        when(tripRepository.save(any(Trip.class))).thenReturn(VALID_TRIP_GEN_INPUT);
+
+        TripDTO result = tripService.generateTrip(VALID_TRIP_DTO_GEN_INPUT);
+
+        assertNotNull(result);
+        assertEquals(result.name(), "Generated Test Trip");
+        assertEquals(result.startDate(), TEST_DATE_START);
+        assertEquals(result.endDate(), TEST_DATE_END_VALID);
+        assertTrue(result.isGenerated());
+        assertNotNull(result.tripStops());
+        assertEquals(5, result.tripStops().size());
+        assertEquals("Start", result.tripStops().get(0).location());
+        assertEquals("San Diego", result.tripStops().get(1).location());
+        assertEquals("Los Angeles", result.tripStops().get(2).location());
+        assertEquals("San Francisco", result.tripStops().get(3).location());
+        assertEquals("End", result.tripStops().get(4).location());
+    }
+
+    // BUT30 – Generate Trip with invalid Trip
+    @Test
+    public void generateTrip_invalidTrip(){
+        TripDTO invalid = new TripDTO(
+            null, 
+            "Test Generation", 
+            TEST_DATE_START, 
+            TEST_DATE_END_VALID, 
+            START_LAT_INVALID, 
+            START_LON_VALID, 
+            END_LAT_VALID, 
+            END_LON_VALID, 
+            false, 
+            MAX_HOURS_PER_DAY, 
+            1L, 
+            List.of(VALID_TRIP_STOP_DTO_1, VALID_TRIP_STOP_DTO_2)
+        );
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+            tripService.generateTrip(invalid);
+        });
+
+        assertTrue(thrown.getMessage().contains("Invalid Start Latitude"));
+    }
+    
+    private static void initializeGeneratedTestValues(){
+        VALID_TRIP_STOP_DTO_START = new TripStopDTO(
+            null,
+            Date.from(LocalDate.of(2026, 3, 25).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "Start",
+            null,
+            null
+        );
+
+        VALID_TRIP_STOP_DTO_SD = new TripStopDTO(
+            null,
+            Date.from(LocalDate.of(2026, 3, 26).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "San Diego",
+            2680,
+            "1773b103-88ec-4b64-8163-5fb06b605339"
+        );
+
+        VALID_TRIP_STOP_DTO_LA = new TripStopDTO(
+            null,
+            Date.from(LocalDate.of(2026, 3, 27).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "Los Angeles",
+            22,
+            "70ca6bd1-99b7-4986-bf4a-ea0fa6d08d2c"
+        );
+
+        VALID_TRIP_STOP_DTO_SF = new TripStopDTO(
+            null,
+            Date.from(LocalDate.of(2026, 3, 28).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "San Francisco",
+            2395,
+            "0d3c3efc-80cb-4323-a44c-3e6d40555080"
+        );
+
+        VALID_TRIP_STOP_DTO_END = new TripStopDTO(
+            null,
+            Date.from(LocalDate.of(2026, 3, 29).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "End",
+            null,
+            null
+        );
+
+       GameDTO game1 = new GameDTO(
+            "1773b103-88ec-4b64-8163-5fb06b605339",
+            Date.from(LocalDate.of(2026, 3, 26).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "San Diego Padres",
+            "Detroit Tigers",
+            2680
+        );
+
+        GameDTO game2 = new GameDTO(
+            "70ca6bd1-99b7-4986-bf4a-ea0fa6d08d2c",
+            Date.from(LocalDate.of(2026, 3, 27).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "Los Angeles Dodgers",
+            "Arizona Diamondbacks",
+            22
+        );
+
+        GameDTO game3 = new GameDTO(
+            "0d3c3efc-80cb-4323-a44c-3e6d40555080",
+            Date.from(LocalDate.of(2026, 3, 28).atStartOfDay(ZoneId.of("UTC")).toInstant()),
+            "San Francisco Giants",
+            "New York Yankees",
+            2395
+        );
+
+        GAMES = List.of(game1, game2, game3);
+
+        BallparkDTO ballpark1 = new BallparkDTO(
+            2680,
+            "PETCO Park",
+            "San Diego Padres",
+            "San Diego",
+            "CA",
+            "USA",
+            32.70752890000001,
+            -117.1568083
+        );
+
+        BallparkDTO ballpark2 = new BallparkDTO(
+            22,
+            "Dodger Stadium",
+            "Los Angeles Dodgers",
+            "Los Angeles",
+            "CA",
+            "USA",
+            34.0745409,
+            -118.2408881
+        );
+
+        BallparkDTO ballpark3 = new BallparkDTO(
+            2395,
+            "Oracle Park",
+            "San Francisco Giants",
+            "San Francisco",
+            "CA",
+            "USA",
+            37.7784199,
+            -122.3906212
+        );
+
+        BALLPARKS = List.of(ballpark1, ballpark2, ballpark3);
+
+        VALID_TRIP_DTO_GENERATED = new TripDTO(
+            1L, 
+            "Generated Test Trip", 
+            TEST_DATE_START, 
+            TEST_DATE_END_VALID, 
+            START_LAT_VALID, 
+            START_LON_VALID, 
+            END_LAT_VALID, 
+            END_LON_VALID, 
+            true, 
+            MAX_HOURS_PER_DAY, 
+            1L, 
+            List.of(
+                VALID_TRIP_STOP_DTO_START,
+                VALID_TRIP_STOP_DTO_SD,
+                VALID_TRIP_STOP_DTO_LA,
+                VALID_TRIP_STOP_DTO_SF,
+                VALID_TRIP_STOP_DTO_END
+            )
+        );
+
+        VALID_TRIP_DTO_GEN_INPUT = new TripDTO(
+            1L, 
+            "Generated Test Trip", 
+            TEST_DATE_START, 
+            TEST_DATE_END_VALID, 
+            START_LAT_VALID, 
+            START_LON_VALID, 
+            END_LAT_VALID, 
+            END_LON_VALID, 
+            false, 
+            MAX_HOURS_PER_DAY, 
+            1L, 
+            null
+        );
+
+        VALID_TRIP_GEN_INPUT = new Trip();
+        VALID_TRIP_GEN_INPUT.setId(1L); 
+        VALID_TRIP_GEN_INPUT.setName("Generated Test Trip");
+        VALID_TRIP_GEN_INPUT.setStartDate(TEST_DATE_START);
+        VALID_TRIP_GEN_INPUT.setEndDate(TEST_DATE_END_VALID);
+        VALID_TRIP_GEN_INPUT.setStartLatitude(START_LAT_VALID);
+        VALID_TRIP_GEN_INPUT.setStartLongitude(START_LON_VALID);
+        VALID_TRIP_GEN_INPUT.setEndLatitude(END_LAT_VALID);
+        VALID_TRIP_GEN_INPUT.setEndLongitude(END_LON_VALID);
+        VALID_TRIP_GEN_INPUT.setIsGenerated(false);
+        VALID_TRIP_GEN_INPUT.setMaxHoursPerDay(MAX_HOURS_PER_DAY);
+        VALID_TRIP_GEN_INPUT.setUserId(1L);
+
+        TripStop VALID_TRIP_STOP_START = new TripStop();
+        VALID_TRIP_STOP_START.setId(1L);
+        VALID_TRIP_STOP_START.setDate(Date.from(LocalDate.of(2026, 3, 25).atStartOfDay(ZoneId.of("UTC")).toInstant()));
+        VALID_TRIP_STOP_START.setLocation("Start");
+        VALID_TRIP_STOP_START.setBallparkId(null);
+        VALID_TRIP_STOP_START.setGameId(null);
+
+        TripStop VALID_TRIP_STOP_SD = new TripStop();
+        VALID_TRIP_STOP_SD.setId(2L);
+        VALID_TRIP_STOP_SD.setDate(Date.from(LocalDate.of(2026, 3, 26).atStartOfDay(ZoneId.of("UTC")).toInstant()));
+        VALID_TRIP_STOP_SD.setLocation("San Diego");
+        VALID_TRIP_STOP_SD.setBallparkId(2680);
+        VALID_TRIP_STOP_SD.setGameId("1773b103-88ec-4b64-8163-5fb06b605339");
+
+        TripStop VALID_TRIP_STOP_LA = new TripStop();
+        VALID_TRIP_STOP_LA.setId(3L);
+        VALID_TRIP_STOP_LA.setDate(Date.from(LocalDate.of(2026, 3, 27).atStartOfDay(ZoneId.of("UTC")).toInstant()));
+        VALID_TRIP_STOP_LA.setLocation("Los Angeles");
+        VALID_TRIP_STOP_LA.setBallparkId(22);
+        VALID_TRIP_STOP_LA.setGameId("70ca6bd1-99b7-4986-bf4a-ea0fa6d08d2c");
+
+        TripStop VALID_TRIP_STOP_SF = new TripStop();
+        VALID_TRIP_STOP_SF.setId(4L);
+        VALID_TRIP_STOP_SF.setDate(Date.from(LocalDate.of(2026, 3, 28).atStartOfDay(ZoneId.of("UTC")).toInstant()));
+        VALID_TRIP_STOP_SF.setLocation("San Francisco");
+        VALID_TRIP_STOP_SF.setBallparkId(2395);
+        VALID_TRIP_STOP_SF.setGameId("0d3c3efc-80cb-4323-a44c-3e6d40555080");
+
+        TripStop VALID_TRIP_STOP_END = new TripStop();
+        VALID_TRIP_STOP_END.setId(5L);
+        VALID_TRIP_STOP_END.setDate(Date.from(LocalDate.of(2026, 3, 29).atStartOfDay(ZoneId.of("UTC")).toInstant()));
+        VALID_TRIP_STOP_END.setLocation("End");
+        VALID_TRIP_STOP_END.setBallparkId(null);
+        VALID_TRIP_STOP_END.setGameId(null);
+
+        VALID_TRIP_GENERATED = new Trip();
+        VALID_TRIP_GENERATED.setId(1L);
+        VALID_TRIP_GENERATED.setName("Generated Test Trip");
+        VALID_TRIP_GENERATED.setStartDate(TEST_DATE_START);
+        VALID_TRIP_GENERATED.setEndDate(TEST_DATE_END_VALID);
+        VALID_TRIP_GENERATED.setStartLatitude(START_LAT_VALID);
+        VALID_TRIP_GENERATED.setStartLongitude(START_LON_VALID);
+        VALID_TRIP_GENERATED.setEndLatitude(END_LAT_VALID);
+        VALID_TRIP_GENERATED.setEndLongitude(END_LON_VALID);
+        VALID_TRIP_GENERATED.setIsGenerated(true);
+        VALID_TRIP_GENERATED.setMaxHoursPerDay(MAX_HOURS_PER_DAY);
+        VALID_TRIP_GENERATED.setUserId(1L);
+        List<TripStop> stops = List.of(
+            VALID_TRIP_STOP_START,
+            VALID_TRIP_STOP_SD,
+            VALID_TRIP_STOP_LA,
+            VALID_TRIP_STOP_SF,
+            VALID_TRIP_STOP_END
+        );
+        for (TripStop stop : stops) {
+            stop.setTrip(VALID_TRIP_GENERATED);
+            VALID_TRIP_GENERATED.addTripStop(stop);
+        }
+    }
+
 }

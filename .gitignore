@@ -15,4 +15,4 @@ node_modules/
 dist/
 .vite/
 .env
-coverage/*
+coverage

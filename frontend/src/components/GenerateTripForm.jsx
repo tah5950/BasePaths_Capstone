@@ -95,30 +95,35 @@ const GenerateTripForm = ({ open, onClose, onTripGenerated, trip })  => {
             value={formData.startLatitude}
             onChange={(e) => handleChange("startLatitude", e.target.value)}
             required
+            name="startLat"
           />
           <TextField
             label="Start Longitude (-180 to 180)"
             value={formData.startLongitude}
             onChange={(e) => handleChange("startLongitude", e.target.value)}
             required
+            name="startLon"
           />
           <TextField
             label="End Latitude (-90 to 90)"
             value={formData.endLatitude}
             onChange={(e) => handleChange("endLatitude", e.target.value)}
             required
+            name="endLat"
           />
           <TextField
             label="End Longitude (-180 to 180)"
             value={formData.endLongitude}
             onChange={(e) => handleChange("endLongitude", e.target.value)}
             required
+            name="endLon"
           />
           <TextField
             label="Max Travel Hours Per Day"
             value={formData.maxHoursPerDay}
             onChange={(e) => handleChange("maxHoursPerDay", e.target.value)}
             required
+            name="maxHours"
           />
           {message && (
             <Alert severity={message.startsWith("Error") ? "error" : "success"}>
