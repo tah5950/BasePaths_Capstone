@@ -1,72 +1,72 @@
 [
 	{
-		"game_id" : "cc3d3afe-591e-44b8-a273-5730f50910b7",
-		"home_team" : "San Francisco Giants",
-		"away_team" : "New York Yankees",
+		"gameId" : "cc3d3afe-591e-44b8-a273-5730f50910b7",
+		"homeTeam" : "San Francisco Giants",
+		"awayTeam" : "New York Yankees",
 		"date" : "2026-03-25",
-		"ballpark_id" : 2395
+		"ballparkId" : 2395
 	},
 	{
-		"game_id" : "f1651b7f-793d-41c9-b122-24415a3e1ee9",
-		"home_team" : "San Diego Padres",
-		"away_team" : "San Francisco Giants",
+		"gameId" : "f1651b7f-793d-41c9-b122-24415a3e1ee9",
+		"homeTeam" : "San Diego Padres",
+		"awayTeam" : "San Francisco Giants",
 		"date" : "2026-03-30",
-		"ballpark_id" : 2680
+		"ballparkId" : 2680
 	},
 	{
-		"game_id" : "07e436a7-6300-4d03-889d-f5b0a33c120b",
-		"home_team" : "Los Angeles Dodgers",
-		"away_team" : "Arizona Diamondbacks",
+		"gameId" : "07e436a7-6300-4d03-889d-f5b0a33c120b",
+		"homeTeam" : "Los Angeles Dodgers",
+		"awayTeam" : "Arizona Diamondbacks",
 		"date" : "2026-03-26",
-		"ballpark_id" : 22
+		"ballparkId" : 22
 	},
 	{
-		"game_id" : "1773b103-88ec-4b64-8163-5fb06b605339",
-		"home_team" : "San Diego Padres",
-		"away_team" : "Detroit Tigers",
+		"gameId" : "1773b103-88ec-4b64-8163-5fb06b605339",
+		"homeTeam" : "San Diego Padres",
+		"awayTeam" : "Detroit Tigers",
 		"date" : "2026-03-26",
-		"ballpark_id" : 2680
+		"ballparkId" : 2680
 	},
 	{
-		"game_id" : "70ca6bd1-99b7-4986-bf4a-ea0fa6d08d2c",
-		"home_team" : "Los Angeles Dodgers",
-		"away_team" : "Arizona Diamondbacks",
+		"gameId" : "70ca6bd1-99b7-4986-bf4a-ea0fa6d08d2c",
+		"homeTeam" : "Los Angeles Dodgers",
+		"awayTeam" : "Arizona Diamondbacks",
 		"date" : "2026-03-27",
-		"ballpark_id" : 22
+		"ballparkId" : 22
 	},
 	{
-		"game_id" : "0351fddc-1f4c-407a-934f-8426e6448ab3",
-		"home_team" : "San Diego Padres",
-		"away_team" : "Detroit Tigers",
+		"gameId" : "0351fddc-1f4c-407a-934f-8426e6448ab3",
+		"homeTeam" : "San Diego Padres",
+		"awayTeam" : "Detroit Tigers",
 		"date" : "2026-03-27",
-		"ballpark_id" : 2680
+		"ballparkId" : 2680
 	},
 	{
-		"game_id" : "abcaf573-e5be-4a60-bb2a-3eee31ced40a",
-		"home_team" : "San Francisco Giants",
-		"away_team" : "New York Yankees",
+		"gameId" : "abcaf573-e5be-4a60-bb2a-3eee31ced40a",
+		"homeTeam" : "San Francisco Giants",
+		"awayTeam" : "New York Yankees",
 		"date" : "2026-03-27",
-		"ballpark_id" : 2395
+		"ballparkId" : 2395
 	},
 	{
-		"game_id" : "9f8a182a-c99d-4f86-b80d-3ed04983ff18",
-		"home_team" : "Los Angeles Dodgers",
-		"away_team" : "Arizona Diamondbacks",
+		"gameId" : "9f8a182a-c99d-4f86-b80d-3ed04983ff18",
+		"homeTeam" : "Los Angeles Dodgers",
+		"awayTeam" : "Arizona Diamondbacks",
 		"date" : "2026-03-28",
-		"ballpark_id" : 22
+		"ballparkId" : 22
 	},
 	{
-		"game_id" : "c3eb56ec-2f90-4701-be32-9b6af71f3105",
-		"home_team" : "San Diego Padres",
-		"away_team" : "Detroit Tigers",
+		"gameId" : "c3eb56ec-2f90-4701-be32-9b6af71f3105",
+		"homeTeam" : "San Diego Padres",
+		"awayTeam" : "Detroit Tigers",
 		"date" : "2026-03-28",
-		"ballpark_id" : 2680
+		"ballparkId" : 2680
 	},
 	{
-		"game_id" : "0d3c3efc-80cb-4323-a44c-3e6d40555080",
-		"home_team" : "San Francisco Giants",
-		"away_team" : "New York Yankees",
+		"gameId" : "0d3c3efc-80cb-4323-a44c-3e6d40555080",
+		"homeTeam" : "San Francisco Giants",
+		"awayTeam" : "New York Yankees",
 		"date" : "2026-03-28",
-		"ballpark_id" : 2395
+		"ballparkId" : 2395
 	}
 ]
