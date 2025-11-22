@@ -1,6 +1,7 @@
 package psu.basepaths.service;
 
 import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -449,6 +450,26 @@ public class TripServiceTest {
         });
 
         assertTrue(thrown.getMessage().contains("Invalid Start Latitude"));
+    }
+
+    // BUT31 – Delete Valid Trip
+    @Test
+    public void deleteTrip_validTrip(){
+        when(tripRepository.findByIdAndUserId(1L, 1L)).thenReturn(Optional.of(VALID_TRIP_1));
+
+        assertDoesNotThrow(() -> tripService.deleteTrip(1L, 1L));
+    }
+
+    // BUT32 – Delete Invalid Trip
+    @Test
+    public void deleteTrip_invalidTrip(){
+        when(tripRepository.findByIdAndUserId(1L, 1L)).thenReturn(Optional.empty());
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            tripService.deleteTrip(1L, 1L);
+        });
+
+        assertTrue(thrown.getMessage().contains("Trip not found or not accessible by user: "));
     }
     
     private static void initializeGeneratedTestValues(){
