@@ -175,3 +175,26 @@ export const mockFetchTripDetailsPageBase= () => {
     return Promise.resolve({ ok: false, json: async () => ({ error: "Unknown URL" }) });
   });
 };
+
+export const mockDeleteTripSuccess = () => {
+  const prevFetch = global.fetch;
+  global.fetch = jest.fn((url, options) => {
+    if (options?.method === "DELETE" && url.includes("/api/trip/delete/1")) {
+      return Promise.resolve({
+        ok: true,
+        status: 204
+      });
+    }
+    return prevFetch(url, options);
+  });
+};
+
+export const mockDeleteTripFailure = () => {
+  const prevFetch = global.fetch;
+  global.fetch = jest.fn((url, options) => {
+    if (options?.method === "DELETE" && url.includes("/api/trip/delete/1")) {
+      return Promise.reject(new Error("Network Error"));
+    }
+    return prevFetch(url, options);
+  });
+};
