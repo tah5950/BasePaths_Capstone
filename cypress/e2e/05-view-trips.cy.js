@@ -6,7 +6,6 @@ describe("User Views Trips", () => {
     });
 
     it("SYS18 - Trips Page Loads", () => {
-        //cy.createTrip();
         cy.visit("/home");
         cy.contains("button", /Trips/i).click();
 
