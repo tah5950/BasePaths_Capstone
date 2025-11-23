@@ -13,7 +13,9 @@ describe("User Deletes Trip", () => {
 
         cy.contains("button", /Cancel/i).should("be.visible");
 
-        cy.contains("button", /Delete/i).click();
+        cy.get('.MuiDialog-paper').contains('button', /Delete/i).click();
+
+        cy.get('.MuiDialog-container').should('not.exist');
 
         cy.location('pathname').should('eq', '/trips');
 
