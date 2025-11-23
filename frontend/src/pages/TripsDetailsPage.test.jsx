@@ -1,10 +1,8 @@
-import React from "react";
 import { render, screen, fireEvent, waitFor, within} from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import TripsPage from "./TripsPage";
 import TripsDetailsPage from "./TripsDetailsPage";
 import { getToken } from "../utils/authUtils";
-import { mockFetchTripDetailsPage, mockFetchTripDetailsPageBase } from "../utils/test-utils";
+import { mockFetchTripDetailsPage, mockFetchTripDetailsPageBase, mockDeleteTripFailure, mockDeleteTripSuccess } from "../utils/test-utils";
 
 // Mock getToken call for API calls
 jest.mock("../utils/authUtils", () => ({
@@ -172,5 +170,130 @@ describe("View Trip Frontend Unit Tests", () => {
         fireEvent.click(screen.getByRole("button", {name: /Generate Trip/i}));
     
         expect(screen.queryByRole("dialog")).toBeInTheDocument();
+    });
+
+    test("FUT22 - Open Delete Dialog", async () => {
+        mockFetchTripDetailsPage();
+        
+        render(
+            <MemoryRouter initialEntries={["/trip/1"]}>
+                <Routes>
+                    <Route path="/trip/:tripId" element={<TripsDetailsPage />} />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        await waitFor(() => {
+            expect(screen.getByText("Test Trip")).toBeInTheDocument();
+            expect(screen.getByText(/Trip Overview/i)).toBeInTheDocument();
+        });
+    
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    
+        fireEvent.click(screen.getByRole("button", {name: /Delete Trip/i}));
+    
+        expect(screen.queryByRole("dialog")).toBeInTheDocument();
+    });
+
+    test("FUT23 - Cancel Trip Deletion", async () => {
+        mockFetchTripDetailsPage();
+        
+        render(
+            <MemoryRouter initialEntries={["/trip/1"]}>
+                <Routes>
+                    <Route path="/trip/:tripId" element={<TripsDetailsPage />} />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        await waitFor(() => {
+            expect(screen.getByText("Test Trip")).toBeInTheDocument();
+            expect(screen.getByText(/Trip Overview/i)).toBeInTheDocument();
+        });
+    
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    
+        fireEvent.click(screen.getByRole("button", {name: /Delete Trip/i}));
+    
+        expect(screen.queryByRole("dialog")).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole("button", {name: /Cancel/i}));
+
+        await waitFor(() => {
+            expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        });
+    });
+
+    test("FUT24 - Successful Trip Deletion", async () => {
+        mockFetchTripDetailsPage();
+        mockDeleteTripSuccess();
+        
+        render(
+            <MemoryRouter initialEntries={["/trip/1"]}>
+                <Routes>
+                    <Route path="/trip/:tripId" element={<TripsDetailsPage />} />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        await waitFor(() => {
+            expect(screen.getByText("Test Trip")).toBeInTheDocument();
+            expect(screen.getByText(/Trip Overview/i)).toBeInTheDocument();
+        });
+    
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    
+        fireEvent.click(screen.getByRole("button", {name: /Delete Trip/i}));
+    
+        expect(screen.queryByRole("dialog")).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole("button", {name: /Delete/i}));
+
+        // Verify api fetch calls
+        expect(global.fetch).toHaveBeenCalledWith(
+            expect.stringContaining("/api/trip/delete/1"),
+            expect.objectContaining({ method: "DELETE" })
+        );
+
+        await waitFor(() => {
+            expect(mockNavigate).toHaveBeenCalledWith("/trips");
+        });
+    });
+
+    test("FUT25 - Failed Trip Deletion", async () => {
+        mockFetchTripDetailsPage();
+        mockDeleteTripFailure();
+        
+        render(
+            <MemoryRouter initialEntries={["/trip/1"]}>
+                <Routes>
+                    <Route path="/trip/:tripId" element={<TripsDetailsPage />} />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        await waitFor(() => {
+            expect(screen.getByText("Test Trip")).toBeInTheDocument();
+            expect(screen.getByText(/Trip Overview/i)).toBeInTheDocument();
+        });
+    
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    
+        fireEvent.click(screen.getByRole("button", {name: /Delete Trip/i}));
+    
+        expect(screen.queryByRole("dialog")).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole("button", {name: /Delete/i}));
+
+        expect(global.fetch).toHaveBeenCalledWith(
+            expect.stringContaining("/api/trip/delete/1"),
+            expect.objectContaining({ method: "DELETE" })
+        );
+
+        await waitFor(() => {
+            expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        });
+
+        expect(screen.getByText(/^Delete Failed:/i)).toBeInTheDocument();
     });
 });
