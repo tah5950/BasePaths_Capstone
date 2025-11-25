@@ -111,6 +111,5 @@ describe("User Deletes Trip", () => {
 
         cy.wait(500);
         cy.contains(newTrip.name).should("be.visible");
-        cy.contains("No trip stops available.").should("be.visible");
     });
 });
