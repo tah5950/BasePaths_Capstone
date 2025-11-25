@@ -50,7 +50,6 @@ describe("User Views Trips", () => {
             cy.contains(end).should('be.visible');
         });
 
-        // Optionally verify other fields
         cy.contains(/Generated:/).should('be.visible');
         cy.contains(/Max Hours Per Day:/).should('be.visible');
         cy.contains(/Start Coordinate:/).should('be.visible');

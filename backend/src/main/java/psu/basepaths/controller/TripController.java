@@ -59,8 +59,15 @@ public class TripController {
 
     @PutMapping("/updateTrip")
     public ResponseEntity<?> updateTrip(@RequestBody TripDTO tripDTO, Authentication auth) {
-        TripDTO updated = tripService.updateTrip(tripDTO, false);
-        return ResponseEntity.ok(updated);
+        try{
+            TripDTO updated = tripService.updateTrip(tripDTO, false);
+            return ResponseEntity.ok(updated);
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("error", e.getMessage()));
+        }
     }
 
     @DeleteMapping("/delete/{tripid}")
