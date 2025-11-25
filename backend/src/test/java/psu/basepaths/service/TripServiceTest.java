@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.sql.Update;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -58,6 +58,7 @@ public class TripServiceTest {
     private static Date TEST_DATE_END_INVALID;
 
     private static Trip VALID_TRIP_1;
+    private static Trip VALID_TRIP_1_TO_UPDATE;
     private static Trip VALID_TRIP_2_NO_STOPS;
     private static Trip VALID_TRIP_GEN_INPUT;
     private static Trip VALID_TRIP_GENERATED;
@@ -166,6 +167,19 @@ public class TripServiceTest {
         VALID_TRIP_1.setMaxHoursPerDay(MAX_HOURS_PER_DAY);
         VALID_TRIP_1.setUserId(1L);
         VALID_TRIP_1.setTripStops(new ArrayList<>(List.of(VALID_TRIP_STOP_1, VALID_TRIP_STOP_2)));
+
+        VALID_TRIP_1_TO_UPDATE = new Trip();
+        VALID_TRIP_1_TO_UPDATE.setId(1L);
+        VALID_TRIP_1_TO_UPDATE.setName("Test Trip 1");
+        VALID_TRIP_1_TO_UPDATE.setStartDate(TEST_DATE_START);
+        VALID_TRIP_1_TO_UPDATE.setEndDate(TEST_DATE_END_VALID);
+        VALID_TRIP_1_TO_UPDATE.setStartLatitude(START_LAT_VALID);
+        VALID_TRIP_1_TO_UPDATE.setStartLongitude(START_LON_VALID);
+        VALID_TRIP_1_TO_UPDATE.setEndLatitude(END_LAT_VALID);
+        VALID_TRIP_1_TO_UPDATE.setEndLongitude(END_LON_VALID);
+        VALID_TRIP_1_TO_UPDATE.setMaxHoursPerDay(MAX_HOURS_PER_DAY);
+        VALID_TRIP_1_TO_UPDATE.setUserId(1L);
+        VALID_TRIP_1_TO_UPDATE.setTripStops(new ArrayList<>(List.of(VALID_TRIP_STOP_1, VALID_TRIP_STOP_2)));
 
         VALID_TRIP_1_UPDATED = new Trip();
         VALID_TRIP_1_UPDATED.setId(1L);
@@ -507,7 +521,7 @@ public class TripServiceTest {
     // BUT33 - Update Valid Trip
     @Test
     public void updateTrip_validTrip(){
-        when(tripRepository.findById(1L)).thenReturn(Optional.of(VALID_TRIP_1));
+        when(tripRepository.findById(1L)).thenReturn(Optional.of(VALID_TRIP_1_TO_UPDATE));
         when(tripRepository.save(any(Trip.class))).thenReturn(VALID_TRIP_1_UPDATED);
 
         TripDTO updated = tripService.updateTrip(VALID_TRIP_DTO_1_UPDATED, false);

@@ -31,7 +31,7 @@ jobs:
       - name: Backend Build
         run: |
           cd backend
-          ./gradlew clean build --no-daemon
+          ./gradlew clean build --no-daemon -x test
 
       - name: Backend Tests
         run: |
