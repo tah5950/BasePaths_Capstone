@@ -3,7 +3,9 @@ package psu.basepaths.service;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -49,11 +51,13 @@ public class TripServiceTest {
     private static final double START_LON_VALID = -117.16;
     private static final double END_LAT_VALID = 38.58;
     private static final double END_LON_VALID = -121.49;
-    private static final double START_LAT_INVALID = 100.72;
+    private static final double LAT_INVALID = 100.72;
+    private static final double LON_INVALID = 200.72;
 
     private static int MAX_HOURS_PER_DAY = 8;
 
     private static Date TEST_DATE_START;
+    private static Date TEST_DATE_START_UPDATE;
     private static Date TEST_DATE_END_VALID;
     private static Date TEST_DATE_END_INVALID;
 
@@ -63,6 +67,7 @@ public class TripServiceTest {
     private static Trip VALID_TRIP_GEN_INPUT;
     private static Trip VALID_TRIP_GENERATED;
     private static Trip VALID_TRIP_1_UPDATED;
+    private static Trip VALID_TRIP_1_UPDATED_DATES;
 
     private static TripStop VALID_TRIP_STOP_1;
     private static TripStop VALID_TRIP_STOP_2;
@@ -71,6 +76,7 @@ public class TripServiceTest {
     private static TripDTO VALID_TRIP_DTO_GEN_INPUT;
     private static TripDTO VALID_TRIP_DTO_GENERATED;
     private static TripDTO VALID_TRIP_DTO_1_UPDATED;
+    private static TripDTO VALID_TRIP_DTO_1_UPDATED_DATES;
 
     private static TripStopDTO VALID_TRIP_STOP_DTO_1;
     private static TripStopDTO VALID_TRIP_STOP_DTO_2;
@@ -88,6 +94,9 @@ public class TripServiceTest {
     public static void setUp() {
         LocalDate localDateStart = LocalDate.of(2026, 3, 25);
         TEST_DATE_START = Date.from(localDateStart.atStartOfDay(ZoneId.of("UTC")).toInstant());
+
+        LocalDate localDateStartUpdate = LocalDate.of(2026, 3, 24);
+        TEST_DATE_START_UPDATE = Date.from(localDateStartUpdate.atStartOfDay(ZoneId.of("UTC")).toInstant());
 
         LocalDate localDateEndValid = LocalDate.of(2026, 3, 29);
         TEST_DATE_END_VALID = Date.from(localDateEndValid.atStartOfDay(ZoneId.of("UTC")).toInstant());
@@ -136,6 +145,21 @@ public class TripServiceTest {
             END_LAT_VALID, 
             END_LON_VALID, 
             false, 
+            MAX_HOURS_PER_DAY, 
+            1L, 
+            List.of(VALID_TRIP_STOP_DTO_1, VALID_TRIP_STOP_DTO_2)
+        );
+
+        VALID_TRIP_DTO_1_UPDATED_DATES = new TripDTO(
+            1L, 
+            "Test Trip 1 Updated", 
+            TEST_DATE_START_UPDATE,
+            TEST_DATE_END_VALID,
+            START_LAT_VALID, 
+            START_LON_VALID, 
+            END_LAT_VALID, 
+            END_LON_VALID, 
+            true, 
             MAX_HOURS_PER_DAY, 
             1L, 
             List.of(VALID_TRIP_STOP_DTO_1, VALID_TRIP_STOP_DTO_2)
@@ -193,6 +217,19 @@ public class TripServiceTest {
         VALID_TRIP_1_UPDATED.setMaxHoursPerDay(MAX_HOURS_PER_DAY);
         VALID_TRIP_1_UPDATED.setUserId(1L);
         VALID_TRIP_1_UPDATED.setTripStops(new ArrayList<>(List.of(VALID_TRIP_STOP_1, VALID_TRIP_STOP_2)));
+
+        VALID_TRIP_1_UPDATED_DATES = new Trip();
+        VALID_TRIP_1_UPDATED_DATES.setId(1L);
+        VALID_TRIP_1_UPDATED_DATES.setName("Test Trip 1 Updated");
+        VALID_TRIP_1_UPDATED_DATES.setStartDate(TEST_DATE_START_UPDATE);
+        VALID_TRIP_1_UPDATED_DATES.setEndDate(TEST_DATE_END_VALID);
+        VALID_TRIP_1_UPDATED_DATES.setStartLatitude(null);
+        VALID_TRIP_1_UPDATED_DATES.setStartLongitude(null);
+        VALID_TRIP_1_UPDATED_DATES.setEndLatitude(null);
+        VALID_TRIP_1_UPDATED_DATES.setEndLongitude(null);
+        VALID_TRIP_1_UPDATED_DATES.setMaxHoursPerDay(null);
+        VALID_TRIP_1_UPDATED_DATES.setUserId(1L);
+        VALID_TRIP_1_UPDATED_DATES.setTripStops(new ArrayList<>());
 
         VALID_TRIP_2_NO_STOPS = new Trip();
         VALID_TRIP_2_NO_STOPS.setId(1L);
@@ -473,15 +510,15 @@ public class TripServiceTest {
         assertEquals("End", result.tripStops().get(4).location());
     }
 
-    // BUT30 – Generate Trip with invalid Trip
+    // BUT30A – Generate Trip with invalid Start Latitude
     @Test
-    public void generateTrip_invalidTrip(){
+    public void generateTrip_invalidStartLat(){
         TripDTO invalid = new TripDTO(
             null, 
             "Test Generation", 
             TEST_DATE_START, 
             TEST_DATE_END_VALID, 
-            START_LAT_INVALID, 
+            LAT_INVALID, 
             START_LON_VALID, 
             END_LAT_VALID, 
             END_LON_VALID, 
@@ -496,6 +533,106 @@ public class TripServiceTest {
         });
 
         assertTrue(thrown.getMessage().contains("Invalid Start Latitude"));
+    }
+
+    // BUT30B – Generate Trip with invalid Start Longitude
+    @Test
+    public void generateTrip_invalidStartLon(){
+        TripDTO invalid = new TripDTO(
+            null, 
+            "Test Generation", 
+            TEST_DATE_START, 
+            TEST_DATE_END_VALID, 
+            START_LAT_VALID, 
+            LON_INVALID, 
+            END_LAT_VALID, 
+            END_LON_VALID, 
+            false, 
+            MAX_HOURS_PER_DAY, 
+            1L, 
+            List.of(VALID_TRIP_STOP_DTO_1, VALID_TRIP_STOP_DTO_2)
+        );
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+            tripService.generateTrip(invalid);
+        });
+
+        assertTrue(thrown.getMessage().contains("Invalid Start Longitude"));
+    }
+
+    // BUT30C – Generate Trip with invalid End Latitude
+    @Test
+    public void generateTrip_invalidEndLat(){
+        TripDTO invalid = new TripDTO(
+            null, 
+            "Test Generation", 
+            TEST_DATE_START, 
+            TEST_DATE_END_VALID, 
+            START_LAT_VALID, 
+            START_LON_VALID, 
+            LAT_INVALID, 
+            END_LON_VALID, 
+            false, 
+            MAX_HOURS_PER_DAY, 
+            1L, 
+            List.of(VALID_TRIP_STOP_DTO_1, VALID_TRIP_STOP_DTO_2)
+        );
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+            tripService.generateTrip(invalid);
+        });
+
+        assertTrue(thrown.getMessage().contains("Invalid End Latitude"));
+    }
+
+    // BUT30D – Generate Trip with invalid End Longitude
+    @Test
+    public void generateTrip_invalidEndLon(){
+        TripDTO invalid = new TripDTO(
+            null, 
+            "Test Generation", 
+            TEST_DATE_START, 
+            TEST_DATE_END_VALID, 
+            START_LAT_VALID, 
+            START_LAT_VALID, 
+            END_LAT_VALID, 
+            LON_INVALID, 
+            false, 
+            MAX_HOURS_PER_DAY, 
+            1L, 
+            List.of(VALID_TRIP_STOP_DTO_1, VALID_TRIP_STOP_DTO_2)
+        );
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+            tripService.generateTrip(invalid);
+        });
+
+        assertTrue(thrown.getMessage().contains("Invalid End Longitude"));
+    }
+
+    // BUT30E – Generate Trip with invalid Max Hours Per Day
+    @Test
+    public void generateTrip_invalidHoursPerDay(){
+        TripDTO invalid = new TripDTO(
+            null, 
+            "Test Generation", 
+            TEST_DATE_START, 
+            TEST_DATE_END_VALID, 
+            START_LAT_VALID, 
+            START_LAT_VALID, 
+            END_LAT_VALID, 
+            END_LON_VALID, 
+            false, 
+            null, 
+            1L, 
+            List.of(VALID_TRIP_STOP_DTO_1, VALID_TRIP_STOP_DTO_2)
+        );
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+            tripService.generateTrip(invalid);
+        });
+
+        assertTrue(thrown.getMessage().contains("Max Hours Per Day must not be empty"));
     }
 
     // BUT31 – Delete Valid Trip
@@ -565,6 +702,25 @@ public class TripServiceTest {
         });
 
         assertTrue(thrown.getMessage().contains("Trip not found with id 1"));
+    }
+
+    // BUT36 - Update Valid Trip Dates
+    @Test
+    public void updateTripDates_validTrip(){
+        when(tripRepository.findById(1L)).thenReturn(Optional.of(VALID_TRIP_1_TO_UPDATE));
+        when(tripRepository.save(any(Trip.class))).thenReturn(VALID_TRIP_1_UPDATED_DATES);
+
+        TripDTO updated = tripService.updateTrip(VALID_TRIP_DTO_1_UPDATED_DATES, false);
+
+        assertEquals(VALID_TRIP_DTO_1_UPDATED_DATES.name(), updated.name());
+        assertEquals(VALID_TRIP_DTO_1_UPDATED_DATES.startDate(), updated.startDate());
+        assertNull(updated.startLatitude());
+        assertNull(updated.startLongitude());
+        assertNull(updated.endLatitude());
+        assertNull(updated.endLongitude());
+        assertNull(updated.maxHoursPerDay());
+        assertFalse(updated.isGenerated());
+        assertEquals(0, updated.tripStops().size());
     }
     
     private static void initializeGeneratedTestValues(){
