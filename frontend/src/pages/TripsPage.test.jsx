@@ -161,7 +161,7 @@ describe("Create Trip Frontend Unit Tests", () => {
         });
     });
 
-    test("FUTTBD - Open Create Form", async () => {
+    test("FUT28 - Open Create Form", async () => {
         render(
             <MemoryRouter>
                 <TripsPage />
